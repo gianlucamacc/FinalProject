@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/currencyConverter"
+        android:layout_width="256dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="128dp"
+        android:text="Currency Converter"
+        android:backgroundTint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/trivia"
+        android:layout_width="256dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/black"
+        android:text="Trivia Question Database"
+        app:layout_constraintEnd_toEndOf="@+id/currencyConverter"
+        app:layout_constraintStart_toStartOf="@+id/currencyConverter"
+        app:layout_constraintTop_toBottomOf="@+id/currencyConverter" />
+
+    <Button
+        android:id="@+id/aviationTracker"
+        android:layout_width="256dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/black"
+        android:text="Aviation Stack Flight Tracker"
+        app:layout_constraintEnd_toEndOf="@+id/trivia"
+        app:layout_constraintStart_toStartOf="@+id/trivia"
+        app:layout_constraintTop_toBottomOf="@+id/trivia" />
+
+    <Button
+        android:id="@+id/bearGenerator"
+        android:layout_width="256dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:text="Bear Image Generator"
+        android:backgroundTint="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/aviationTracker"
+        app:layout_constraintStart_toStartOf="@+id/aviationTracker"
+        app:layout_constraintTop_toBottomOf="@+id/aviationTracker" />
+</androidx.constraintlayout.widget.ConstraintLayout>
