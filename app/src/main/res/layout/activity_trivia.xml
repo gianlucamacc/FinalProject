@@ -6,4 +6,86 @@
     android:layout_height="match_parent"
     tools:context=".TriviaActivity">
 
+    <EditText
+        android:id="@+id/numberOfQuestions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="342dp"
+        android:ems="10"
+        android:hint="1-50"
+        android:maxLength="50"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/categoryOfQuestionsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="156dp"
+        android:layout_marginEnd="156dp"
+        android:text="Select Category"
+        app:layout_constraintBottom_toTopOf="@+id/categoryOfQuestions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="126dp"
+        android:layout_marginTop="145dp"
+        android:layout_marginEnd="126dp"
+        android:layout_marginBottom="32dp"
+        android:text="Trivia Question Generator"
+        app:layout_constraintBottom_toTopOf="@+id/categoryOfQuestionsText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/numberOfQuestionsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="118dp"
+        android:layout_marginBottom="1dp"
+        android:text="Select Number of Questions"
+        app:layout_constraintBottom_toTopOf="@+id/numberOfQuestions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoryOfQuestions" />
+
+    <EditText
+        android:id="@+id/categoryOfQuestions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="100dp"
+        android:ems="10"
+        android:hint="TODO!!"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoryOfQuestionsText" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="260dp"
+        android:text="Get Quiz"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numberOfQuestions" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
