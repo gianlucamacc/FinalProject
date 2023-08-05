@@ -57,5 +57,26 @@
         android:text="Get Quiz"
         android:layout_below="@id/categoryOfQuestions"
  />
+<!--    <TextView-->
+<!--        android:id="@+id/testText"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/submitButton"-->
+<!--        android:text="testText"-->
+<!--        />-->
+<!--    <TextView-->
+<!--        android:id="@+id/testText2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/testText"-->
+<!--        android:text="testText2"-->
+<!--        />-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:paddingTop="20dp"
+        android:id="@+id/myRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/submitButton"/>
 
 </RelativeLayout>
