@@ -71,6 +71,9 @@ public class TriviaActivity extends AppCompatActivity {
             else if(categoryOfQuestions.equalsIgnoreCase("general")){
                 categoryNumber = "9";
             }
+            else if (categoryOfQuestions.equalsIgnoreCase("sports")){
+                categoryNumber = "21";
+            }
             else{
                 categoryNumber = "9";
             }
@@ -115,6 +118,10 @@ public class TriviaActivity extends AppCompatActivity {
                                  * TODO radio group section
                                  */
 
+//                                public void onRadioButtonClicked(View ){
+//
+//                                }
+
 
 
 
@@ -123,10 +130,8 @@ public class TriviaActivity extends AppCompatActivity {
                                 recyclerView.setAdapter(adapter);
                                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-//                               String category = question.getString("category");
-//                               String questionText = question.getString("question");
-////                                binding.testText.setText(category);
-////                                binding.testText2.setText(questionText);
+
+
 
                             }
 
@@ -150,7 +155,15 @@ public class TriviaActivity extends AppCompatActivity {
             //end of clk listener
 
         });
+
+        binding.tempButton.setOnClickListener(click -> {
+
+        });
+
+
         radioGroup = findViewById(R.id.RadioGroup);
+
+
         
 
 

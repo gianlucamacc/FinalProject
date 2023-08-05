@@ -50,18 +50,52 @@
 
      />
     <TextView
-        android:id="@+id/quizList"
+        android:id="@+id/quizListTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Quiz List"
         android:layout_alignParentRight="true"
         />
     <TextView
+        android:id="@+id/quizList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="-General \n -Video Games \n -Celebrities \n"
+        android:text="-General \n -Video Games \n -Celebrities \n -Sports"
         android:layout_alignParentRight="true"
+        android:layout_below="@+id/quizListTitle"
+        />
+    <TextView
+        android:layout_marginTop="50dp"
+        android:id="@+id/question1Temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="question1"
         android:layout_below="@+id/quizList"
+        android:layout_alignParentRight="true"
+        />
+    <TextView
+        android:id="@+id/question2Temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="question2"
+        android:layout_below="@+id/question1Temp"
+        android:layout_alignParentRight="true"
+        />
+    <TextView
+        android:id="@+id/question3Temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="question3"
+        android:layout_below="@+id/question2Temp"
+        android:layout_alignParentRight="true"
+        />
+    <TextView
+        android:id="@+id/question4Temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="question4"
+        android:layout_below="@+id/question3Temp"
+        android:layout_alignParentRight="true"
         />
 
     <Button
@@ -71,6 +105,15 @@
         android:text="Get Quiz"
         android:layout_below="@id/categoryOfQuestions"
  />
+
+    <Button
+        android:id="@+id/tempButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="temp Quiz"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/question4Temp"
+        />
 <!--    <TextView-->
 <!--        android:id="@+id/testText"-->
 <!--        android:layout_width="wrap_content"-->
