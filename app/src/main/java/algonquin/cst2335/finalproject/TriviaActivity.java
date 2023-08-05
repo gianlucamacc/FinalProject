@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.RadioGroup;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -51,6 +53,8 @@ public class TriviaActivity extends AppCompatActivity {
 
         queue = Volley.newRequestQueue(this);
 
+        RadioGroup radioGroup;
+
         binding.submitButton.setOnClickListener(clk -> {
             String numberOfQuestions = binding.numberOfQuestions.getText().toString().trim();
             String categoryOfQuestions = binding.categoryOfQuestions.getText().toString().trim();
@@ -76,7 +80,6 @@ public class TriviaActivity extends AppCompatActivity {
                     + "&category="
                     + categoryNumber
                     + "&type=multiple";
-//            String URL = "https://opentdb.com/api.php?amount=50&category=23&type=multiple";
 
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, URL, null,
                     (response) -> {
@@ -107,6 +110,12 @@ public class TriviaActivity extends AppCompatActivity {
 
                                 Collections.shuffle(answerList);
                                 TriviaQuestionModel model = new TriviaQuestionModel( category,  question,  difficulty,  correctAnswer, answerList);
+
+                                /**
+                                 * TODO radio group section
+                                 */
+
+
 
 
                                 questionModels.add(model);
@@ -141,6 +150,8 @@ public class TriviaActivity extends AppCompatActivity {
             //end of clk listener
 
         });
+        radioGroup = findViewById(R.id.RadioGroup);
+        
 
 
     }

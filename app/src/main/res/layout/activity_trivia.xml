@@ -44,11 +44,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="TODO!!"
+        android:hint="TODO"
         android:inputType="text"
         android:layout_below="@id/categoryOfQuestionsText"
 
      />
+    <TextView
+        android:id="@+id/quizList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quiz List"
+        android:layout_alignParentRight="true"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-General \n -Video Games \n -Celebrities \n"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/quizList"
+        />
 
     <Button
         android:id="@+id/submitButton"

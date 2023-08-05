@@ -22,24 +22,28 @@
             android:id="@+id/answer1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="false"
             android:text="answer1"
             android:onClick="onRadioButtonClicked" />
         <RadioButton
             android:id="@+id/answer2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="false"
             android:text="answer2"
             android:onClick="onRadioButtonClicked" />
         <RadioButton
             android:id="@+id/answer3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="false"
             android:text="answer3"
             android:onClick="onRadioButtonClicked" />
         <RadioButton
             android:id="@+id/answer4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="false"
             android:text="answer4"
             android:onClick="onRadioButtonClicked" />
         <TextView
