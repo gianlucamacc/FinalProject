@@ -7,55 +7,14 @@
     >
 
     <TextView
-        android:id="@+id/question"
-        android:layout_width="wrap_content"
+        android:id="@+id/userNameRecycler"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Question goes here"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:text="name goes here" />
 
-    <RadioGroup
-        android:id="@+id/RadioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-        <RadioButton
-            android:id="@+id/answer1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="answer1"
-
-            />
-        <RadioButton
-            android:id="@+id/answer2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="answer2"
-
-            />
-        <RadioButton
-            android:id="@+id/answer3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="answer3"
-
-            />
-        <RadioButton
-            android:id="@+id/answer4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="answer4"
-
-            />
-        <TextView
-            android:id="@+id/tempAnswer"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="answerGoesHere"
-            />
-
-    </RadioGroup>
+    <TextView
+        android:id="@+id/scoreRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="score goes here" />
 </LinearLayout>

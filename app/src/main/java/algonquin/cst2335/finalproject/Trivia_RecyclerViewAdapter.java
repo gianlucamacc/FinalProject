@@ -8,17 +8,23 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Trivia_RecyclerViewAdapter extends RecyclerView.Adapter<Trivia_RecyclerViewAdapter.MyViewHolder> {
     Context context;
     ArrayList<TriviaQuestionModel> questionModels;
+    List<TriviaScores> scoreList;
 
 
-    public Trivia_RecyclerViewAdapter(Context context, ArrayList<TriviaQuestionModel> questionModels){
+
+
+
+    public Trivia_RecyclerViewAdapter(Context context, List<TriviaScores> scoreList){
         this.context = context;
-        this.questionModels = questionModels;
+        this.scoreList = scoreList;
 
     }
 
@@ -33,37 +39,28 @@ public class Trivia_RecyclerViewAdapter extends RecyclerView.Adapter<Trivia_Recy
 
     @Override
     public void onBindViewHolder(@NonNull Trivia_RecyclerViewAdapter.MyViewHolder holder, int position) {
-        holder.questionView.setText(questionModels.get(position).getQuestion());
-        holder.answerView1.setText(questionModels.get(position).getAnswerList().get(0));
-        holder.answerView2.setText(questionModels.get(position).getAnswerList().get(1));
-        holder.answerView3.setText(questionModels.get(position).getAnswerList().get(3));
-        holder.answerView4.setText(questionModels.get(position).getAnswerList().get(2));
-        holder.tempAnswer.setText((questionModels.get(position).getCorrectAnswer()));
+//        holder.questionView.setText(questionModels.get(position).getQuestion());
+        holder.userNameRecycler.setText(scoreList.get(position).userName);
+        holder.scoreRecycler.setText(scoreList.get(position).scoreString);
+//        holder.answerView3.setText(questionModels.get(position).getAnswerList().get(3));
+//        holder.answerView4.setText(questionModels.get(position).getAnswerList().get(2));
+//        holder.tempAnswer.setText((questionModels.get(position).getCorrectAnswer()));
 //        holder.answerView4.setText(questionModels.get(position).getCorrectAnswer());
 
     }
 
     @Override
     public int getItemCount() {
-        return questionModels.size();
+        return scoreList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView questionView;
-        TextView answerView1;
-        TextView answerView2;
-        TextView answerView3;
-        TextView answerView4;
-        TextView tempAnswer;
+     TextView userNameRecycler;
+     TextView scoreRecycler;
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
-             questionView = itemView.findViewById(R.id.question);
-             answerView1 = itemView.findViewById(R.id.answer1);
-             answerView2 = itemView.findViewById(R.id.answer2);
-             answerView3 = itemView.findViewById(R.id.answer3);
-             answerView4 = itemView.findViewById(R.id.answer4);
-             tempAnswer = itemView.findViewById(R.id.tempAnswer);
-
+             userNameRecycler = itemView.findViewById(R.id.userNameRecycler);
+             scoreRecycler = itemView.findViewById(R.id.scoreRecycler);
 
 
 

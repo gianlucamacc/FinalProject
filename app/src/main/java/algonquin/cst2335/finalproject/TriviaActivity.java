@@ -3,7 +3,10 @@ package algonquin.cst2335.finalproject;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioGroup;
@@ -20,6 +23,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import algonquin.cst2335.finalproject.databinding.ActivityMainBinding;
 import algonquin.cst2335.finalproject.databinding.ActivityTriviaBinding;
@@ -39,6 +44,9 @@ public class TriviaActivity extends AppCompatActivity {
     String question;
     String difficulty;
     String correctAnswer;
+    String scoreString;
+
+    TriviaDAO tDAO;
 
     int correctAnswerCount;
 
@@ -53,12 +61,15 @@ public class TriviaActivity extends AppCompatActivity {
         ActivityTriviaBinding binding = ActivityTriviaBinding.inflate( getLayoutInflater());
         setContentView(binding.getRoot());
 
-//        RecyclerView recyclerView = findViewById(R.id.myRecyclerView);
+        TriviaDatabase db = Room.databaseBuilder(getApplicationContext(), TriviaDatabase.class, "TriviaScores-name").build();
+        tDAO = db.tDAO();
+
+
 
 
         queue = Volley.newRequestQueue(this);
 
-        RadioGroup radioGroup;
+
 
         binding.submitButton.setOnClickListener(clk -> {
             String numberOfQuestions = binding.numberOfQuestions.getText().toString().trim();
@@ -133,9 +144,7 @@ public class TriviaActivity extends AppCompatActivity {
 
 
 
-                                Trivia_RecyclerViewAdapter adapter = new Trivia_RecyclerViewAdapter(this, questionModels);
-//                                recyclerView.setAdapter(adapter);
-//                                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
 
 
@@ -213,15 +222,51 @@ public class TriviaActivity extends AppCompatActivity {
                 binding.userNamePrompt.setVisibility(View.VISIBLE);
                 binding.userName.setVisibility(View.VISIBLE);
                 binding.score.setVisibility(View.VISIBLE);
+                binding.saveScoreButton.setVisibility(View.VISIBLE);
+
 
                 binding.score.setText("Your Score is:" + correctAnswerCount + "/" + questionModels.size());
 
-                String scoreString = "Your Score is:" + correctAnswerCount + "/" + questionModels.size();
+                 scoreString = "Your Score is: " + correctAnswerCount + "/" + questionModels.size();
+
+
 
 
 
             }
+
+            /**
+             * end of second click listener
+             */
         });
+
+        binding.saveScoreButton.setOnClickListener(c->{
+            String userName = binding.userName.getText().toString();
+
+            TriviaScores scores = new TriviaScores();
+
+            scores.userName = userName;
+            scores.scoreString = scoreString;
+
+            Executor thread = Executors.newSingleThreadExecutor();
+            thread.execute(()->{
+                tDAO.insertScore(scores);
+
+
+            });
+            Toast.makeText(this, "Saved to dataBase!!", Toast.LENGTH_SHORT).show();
+
+
+
+
+
+        });
+        binding.viewScoresButton.setOnClickListener(ck->{
+            Intent scoresActivityVariable = new Intent(this,ScoresActivity.class);
+            startActivity(scoresActivityVariable);
+
+        });
+
         }
 
 

@@ -156,6 +156,24 @@
         android:visibility="invisible"
 
         />
+    <Button
+        android:id="@+id/saveScoreButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save your Score!!"
+        android:layout_below="@id/userName"
+        android:visibility="invisible"
+        />
+    <Button
+        android:id="@+id/viewScoresButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/count"
+        android:layout_alignParentRight="true"
+        android:text="View scores"
+
+        />
+
 
 
 
