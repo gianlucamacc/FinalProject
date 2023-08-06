@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -39,6 +40,8 @@ public class TriviaActivity extends AppCompatActivity {
     String difficulty;
     String correctAnswer;
 
+    int correctAnswerCount;
+
     int count = 0;
 
 
@@ -50,7 +53,7 @@ public class TriviaActivity extends AppCompatActivity {
         ActivityTriviaBinding binding = ActivityTriviaBinding.inflate( getLayoutInflater());
         setContentView(binding.getRoot());
 
-        RecyclerView recyclerView = findViewById(R.id.myRecyclerView);
+//        RecyclerView recyclerView = findViewById(R.id.myRecyclerView);
 
 
         queue = Volley.newRequestQueue(this);
@@ -120,9 +123,19 @@ public class TriviaActivity extends AppCompatActivity {
 
 
                                 questionModels.add(model);
+
+                                binding.questionView.setText(model.getQuestion());
+                                binding.answerView1.setText(model.getAnswerList().get(0));
+                                binding.answerView2.setText(model.getAnswerList().get(1));
+                                binding.answerView3.setText(model.getAnswerList().get(2));
+                                binding.answerView4.setText(model.getAnswerList().get(3));
+
+
+
+
                                 Trivia_RecyclerViewAdapter adapter = new Trivia_RecyclerViewAdapter(this, questionModels);
-                                recyclerView.setAdapter(adapter);
-                                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//                                recyclerView.setAdapter(adapter);
+//                                recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
 
@@ -149,15 +162,75 @@ public class TriviaActivity extends AppCompatActivity {
             //end of clk listener
 
         });
+        /**
+         * SECOND CLICK LISTENER, FOR NEXT QUESTION
+         */
+
+        binding.nextQuestionSet.setOnClickListener(clickers -> {
+
+            // Increment the count to move to the next position in the ArrayList
+            count++;
+
+            // Check if the count is within the valid range of the ArrayList
+            if (count < questionModels.size()) {
+                // Get the TriviaQuestionModel at the current count position
+                TriviaQuestionModel model = questionModels.get(count);
+
+                // Update the UI with the new question and answer options
+                binding.questionView.setText(model.getQuestion());
+                binding.answerView1.setText(model.getAnswerList().get(0));
+                binding.answerView2.setText(model.getAnswerList().get(1));
+                binding.answerView3.setText(model.getAnswerList().get(2));
+                binding.answerView4.setText(model.getAnswerList().get(3));
+
+                // Check which radio button is checked
+                int selectedId = binding.RadioGroup.getCheckedRadioButtonId();
+
+                // Compare the selectedId with each radio button's ID to determine the user's answer
+                String userAnswer = null;
+                if (selectedId == R.id.answerView1) {
+                    userAnswer = model.getAnswerList().get(0);
+                } else if (selectedId == R.id.answerView2) {
+                    userAnswer = model.getAnswerList().get(1);
+                } else if (selectedId == R.id.answerView3) {
+                    userAnswer = model.getAnswerList().get(2);
+                } else if (selectedId == R.id.answerView4) {
+                    userAnswer = model.getAnswerList().get(3);
+                }
+
+                // Compare the user's answer with the correct answer to check if it's correct
+                if (userAnswer != null && userAnswer.equals(model.getCorrectAnswer())) {
+                    // Increment the correct answer count and update the UI with the count
+                    // Assuming you have a TextView with the ID 'count' to display the count
+                    binding.count.setText("Correct answer count: " + (++correctAnswerCount));
+                } else {
+                    // Display a message if the answer is incorrect
+                    Toast.makeText(this, "Incorrect answer!", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                // If count exceeds the size of the ArrayList, display a message indicating the end of questions
+                Toast.makeText(this, "End of questions", Toast.LENGTH_SHORT).show();
+                binding.userNamePrompt.setVisibility(View.VISIBLE);
+                binding.userName.setVisibility(View.VISIBLE);
+                binding.score.setVisibility(View.VISIBLE);
+
+                binding.score.setText("Your Score is:" + correctAnswerCount + "/" + questionModels.size());
+
+                String scoreString = "Your Score is:" + correctAnswerCount + "/" + questionModels.size();
+
+
+
+            }
+        });
+        }
 
 
 
 
-        radioGroup = findViewById(R.id.RadioGroup);
+
 
 
         
 
 
     }
-}

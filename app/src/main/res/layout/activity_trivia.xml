@@ -82,19 +82,90 @@
         android:layout_below="@id/categoryOfQuestions"
  />
     <Button
+        android:id="@+id/nextQuestionSet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/RadioGroup"
+        android:text="next Question"
+        />
+    <RadioGroup
+        android:id="@+id/RadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/submitButton">
+        <TextView
+            android:id="@+id/questionView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="QUESITON goes here"
+            android:layout_below="@id/submitButton"
+            />
+        <RadioButton
+            android:id="@+id/answerView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="question1 goes here"
+            android:layout_below="@id/questionView"
+            />
+        <RadioButton
+            android:id="@+id/answerView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="question2 goes here"
+            android:layout_below="@id/answerView1"
+            />
+        <RadioButton
+            android:id="@+id/answerView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="question3 goes here"
+            android:layout_below="@id/answerView2"
+            />
+        <RadioButton
+            android:id="@+id/answerView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="question4 goes here"
+            android:layout_below="@id/answerView3"
+            />
+    </RadioGroup>
+    <TextView
+        android:id="@+id/userNamePrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your name!"
+        android:layout_below="@+id/nextQuestionSet"
+        android:visibility="invisible"
+        />
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Name Goes here"
+        android:layout_below="@id/userNamePrompt"
+        android:visibility="invisible"
+        />
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Score is:"
+        android:layout_below="@id/count"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/count"
-        android:text="submitAnswer"
+        android:visibility="invisible"
+
         />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:paddingTop="20dp"
-        android:id="@+id/myRecyclerView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/submitButton"/>
+
+
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:paddingTop="20dp"-->
+<!--        android:id="@+id/myRecyclerView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/submitButton"/>-->
 
 </RelativeLayout>
