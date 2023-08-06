@@ -1,24 +1,26 @@
 package algonquin.cst2335.finalproject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.room.Room;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URLEncoder;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import algonquin.cst2335.finalproject.databinding.ActivityConverterBinding;
 
@@ -27,9 +29,8 @@ public class ConverterActivity extends AppCompatActivity {
 
 
     protected RequestQueue queue = null;
-    protected String inputCurrency;
-    protected String outputCurrency;
-    protected String intputAmount;
+    CurrencyConverterDAO cDAO;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +43,23 @@ public class ConverterActivity extends AppCompatActivity {
         toolbar.showOverflowMenu();
 
         queue = Volley.newRequestQueue(this);
+        /**This is the Currency Conversion database*/
+        ConversionsDatabase db = Room.databaseBuilder(getApplicationContext(), ConversionsDatabase.class, "database-name").build();
+        cDAO = db.ccDAO();
+        Executor thread = Executors.newSingleThreadExecutor();
+        thread.execute(()->{
 
+        });
+
+
+        /**Inside this onClickListener is all for the API url and the convert button functions*/
         binding.convertButton.setOnClickListener(clk -> {
 
-            Toast.makeText(this, "this shit is working", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "THIS SHIT IS WORKING, KEEP GOING!!!", Toast.LENGTH_LONG).show();
 //          String URL = "https://api.getgeoapi.com/v2/currency/convert?format=json&from=CAD&to=USD&amount=10&api_key=c1f37b28035f89328e61c24caefd20d99f97cdf0&format=json";
-            inputCurrency = binding.inputCurrency.getText().toString();
-            outputCurrency = binding.outputCurrency.getText().toString();
-            intputAmount = binding.inputAmount.getText().toString();
+            String inputCurrency = binding.inputCurrency.getText().toString().toUpperCase();
+            String outputCurrency = binding.outputCurrency.getText().toString().toUpperCase();
+            String inputAmount = binding.inputAmount.getText().toString();
 
 
             String URL = "https://api.getgeoapi.com/v2/currency/convert?format=json&from="
@@ -57,7 +67,7 @@ public class ConverterActivity extends AppCompatActivity {
                     + "&to="
                     + URLEncoder.encode(outputCurrency)
                     + "&amount="
-                    + URLEncoder.encode(intputAmount)
+                    + URLEncoder.encode(inputAmount)
                     + "&api_key=c1f37b28035f89328e61c24caefd20d99f97cdf0&format=json";
 
 
