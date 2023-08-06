@@ -39,6 +39,8 @@ public class TriviaActivity extends AppCompatActivity {
     String difficulty;
     String correctAnswer;
 
+    int count = 0;
+
 
 
     @Override
@@ -114,14 +116,6 @@ public class TriviaActivity extends AppCompatActivity {
                                 Collections.shuffle(answerList);
                                 TriviaQuestionModel model = new TriviaQuestionModel( category,  question,  difficulty,  correctAnswer, answerList);
 
-                                /**
-                                 * TODO radio group section
-                                 */
-
-//                                public void onRadioButtonClicked(View ){
-//
-//                                }
-
 
 
 
@@ -156,9 +150,7 @@ public class TriviaActivity extends AppCompatActivity {
 
         });
 
-        binding.tempButton.setOnClickListener(click -> {
 
-        });
 
 
         radioGroup = findViewById(R.id.RadioGroup);
