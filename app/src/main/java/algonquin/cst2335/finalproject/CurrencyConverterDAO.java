@@ -11,7 +11,7 @@ import java.util.List;
 public interface CurrencyConverterDAO {
 
      @Insert
-     void insertConversion(CurrencyConverter currencyConverter);
+     void insertConversion(CurrencyConverter conversion);
 
      @Query("Select * from CurrencyConverter")
      List<CurrencyConverter> getAllConversions();

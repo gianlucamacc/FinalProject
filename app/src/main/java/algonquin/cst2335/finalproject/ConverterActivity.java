@@ -30,13 +30,14 @@ public class ConverterActivity extends AppCompatActivity {
 
     protected RequestQueue queue = null;
     CurrencyConverterDAO cDAO;
+    ActivityConverterBinding binding;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityConverterBinding binding = ActivityConverterBinding.inflate(getLayoutInflater());
+        binding = ActivityConverterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Toolbar toolbar = (Toolbar) findViewById(R.id.myToolbar);
         setSupportActionBar(toolbar);
@@ -75,8 +76,8 @@ public class ConverterActivity extends AppCompatActivity {
                     (response) -> {
                         try {
                             JSONObject rates = response.getJSONObject("rates");
-                            JSONObject cad = rates.getJSONObject(outputCurrency);
-                            String ratesAmount = cad.getString("rate_for_amount");
+                            JSONObject currency = rates.getJSONObject(outputCurrency);
+                            String ratesAmount = currency.getString("rate_for_amount");
                             binding.outputAmount.setText(ratesAmount);
 
                         } catch (JSONException e) {
@@ -102,10 +103,29 @@ public class ConverterActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.item1) {
-            Toast.makeText(this, "You clicked on Item 1", Toast.LENGTH_LONG).show();
+            saveCurrencyConversionToDatabase();
+            Toast.makeText(this, "Currency conversion is saved to the database", Toast.LENGTH_LONG).show();
         } else if (item.getItemId() == R.id.item2) {
             Toast.makeText(this, "You clicked on Item 2", Toast.LENGTH_LONG).show();
         }
         return true;
+    }
+    private void saveCurrencyConversionToDatabase(){
+
+        String inputAmount = binding.inputAmount.getText().toString();
+        String outputAmount = binding.outputAmount.getText().toString();
+        String inputCurrency = binding.inputCurrency.getText().toString().toUpperCase();
+        String outputCurrency = binding.outputCurrency.getText().toString().toUpperCase();
+
+        CurrencyConverter conversion = new CurrencyConverter();
+        conversion.inputAmount = inputAmount;
+        conversion.outputAmount = outputAmount;
+        conversion.inputCurrency = inputCurrency;
+        conversion.outputCurrency = outputCurrency;
+
+        Executor thread = Executors.newSingleThreadExecutor();
+        thread.execute(()->{
+            cDAO.insertConversion(conversion);
+        });
     }
 }

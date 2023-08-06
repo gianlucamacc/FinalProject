@@ -8,16 +8,16 @@ import androidx.room.PrimaryKey;
 public class CurrencyConverter {
 
     @ColumnInfo(name = "Input Amount")
-    protected String inputAmount;
+    public String inputAmount;
 
     @ColumnInfo(name = "Output Amount")
-    protected String outputAmount;
+    public String outputAmount;
 
     @ColumnInfo(name = "Input Currency")
-    protected String inputCurrency;
+    public String inputCurrency;
 
     @ColumnInfo(name = "Output Currency")
-    protected String outputCurrency;
+    public String outputCurrency;
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
