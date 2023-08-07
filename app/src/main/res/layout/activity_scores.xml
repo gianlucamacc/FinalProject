@@ -27,4 +27,11 @@
         android:layout_height="wrap_content"
         android:text="Back to Quiz"
         />
+
+    <FrameLayout
+        android:id="@+id/fragmentLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
 </LinearLayout>
