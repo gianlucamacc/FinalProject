@@ -68,7 +68,7 @@
         android:id="@+id/count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="correct answer count goes here"
+        android:text="correct "
         android:layout_below="@+id/quizList"
         android:layout_alignParentRight="true"
         />
@@ -151,7 +151,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Your Score is:"
-        android:layout_below="@id/count"
+        android:layout_below="@id/viewScoresButton"
         android:layout_alignParentRight="true"
         android:visibility="invisible"
 

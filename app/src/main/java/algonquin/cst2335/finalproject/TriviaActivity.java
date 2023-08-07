@@ -46,11 +46,15 @@ public class TriviaActivity extends AppCompatActivity {
     String correctAnswer;
     String scoreString;
 
+    ArrayList<Integer> compareScoreList= new ArrayList<>();
+
     TriviaDAO tDAO;
 
     int correctAnswerCount;
 
     int count = 0;
+
+    int scoreCount = 0;
 
 
 
@@ -98,7 +102,7 @@ public class TriviaActivity extends AppCompatActivity {
                     + numberOfQuestions
                     + "&category="
                     + categoryNumber
-                    + "&type=multiple";
+                    + "&difficulty=easy&type=multiple";
 
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, URL, null,
                     (response) -> {
@@ -208,10 +212,13 @@ public class TriviaActivity extends AppCompatActivity {
                 }
 
                 // Compare the user's answer with the correct answer to check if it's correct
-                if (userAnswer != null && userAnswer.equals(model.getCorrectAnswer())) {
+                if (userAnswer.equalsIgnoreCase(model.getCorrectAnswer())) {
                     // Increment the correct answer count and update the UI with the count
                     // Assuming you have a TextView with the ID 'count' to display the count
-                    binding.count.setText("Correct answer count: " + (++correctAnswerCount));
+                    scoreCount = scoreCount + 10;
+                    binding.count.setText("Correct answer count: " + (++correctAnswerCount) + "(" +(scoreCount) + ")");
+
+                    Toast.makeText(this, "RIGHT", Toast.LENGTH_SHORT).show();
                 } else {
                     // Display a message if the answer is incorrect
                     Toast.makeText(this, "Incorrect answer!", Toast.LENGTH_SHORT).show();
@@ -225,9 +232,9 @@ public class TriviaActivity extends AppCompatActivity {
                 binding.saveScoreButton.setVisibility(View.VISIBLE);
 
 
-                binding.score.setText("Your Score is:" + correctAnswerCount + "/" + questionModels.size());
+                binding.score.setText("Your Score is:" + correctAnswerCount + "/" + questionModels.size() + "(" + scoreCount + ")");
 
-                 scoreString = "Your Score is: " + correctAnswerCount + "/" + questionModels.size();
+                 scoreString = "Your Score is: " + correctAnswerCount + "/" + questionModels.size() + "(" + scoreCount + ")" ;
 
 
 

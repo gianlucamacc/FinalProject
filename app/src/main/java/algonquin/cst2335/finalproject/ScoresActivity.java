@@ -5,7 +5,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -31,10 +36,18 @@ TriviaDAO tDAO;
 
             // Update the UI on the main thread after database operation is complete
             runOnUiThread(() -> {
-                Trivia_RecyclerViewAdapter adapter = new Trivia_RecyclerViewAdapter(this, scoreList);
+                Trivia_RecyclerViewAdapter adapter = new Trivia_RecyclerViewAdapter(this, scoreList, db);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
             });
         });
+
+        Button returnButton = findViewById(R.id.returnFromScoreButton);
+
+        returnButton.setOnClickListener(k->{
+            Intent vari = new Intent(this,TriviaActivity.class);
+            startActivity(vari);
+        });
+
     }
 }
