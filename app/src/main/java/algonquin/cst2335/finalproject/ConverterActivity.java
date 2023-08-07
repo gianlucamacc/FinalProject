@@ -1,12 +1,16 @@
 package algonquin.cst2335.finalproject;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.room.Room;
@@ -34,6 +38,10 @@ public class ConverterActivity extends AppCompatActivity {
     protected RequestQueue queue = null;
     CurrencyConverterDAO cDAO;
     ActivityConverterBinding binding;
+    SharedPreferences prefs;
+    EditText inputAmount;
+    EditText inputCurrency;
+    EditText outputCurrency;
 
 
     @Override
@@ -46,17 +54,35 @@ public class ConverterActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.showOverflowMenu();
 
+        prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        inputAmount = findViewById(R.id.inputAmount);
+        inputCurrency = findViewById(R.id.inputCurrency);
+        outputCurrency = findViewById(R.id.outputCurrency);
+        String savedInputCurrency = prefs.getString("inputCurrency", "");
+        String savedOutputCurrency = prefs.getString("outputCurrency", "");
+        String savedInputAmount = prefs.getString("inputAmount", "");
+
+
+        inputAmount.setText(savedInputAmount);
+        inputCurrency.setText(savedInputCurrency);
+        outputCurrency.setText(savedOutputCurrency);
+
+
         queue = Volley.newRequestQueue(this);
         /**This is the Currency Conversion database*/
         ConversionsDatabase db = Room.databaseBuilder(getApplicationContext(), ConversionsDatabase.class, "database-name").build();
         cDAO = db.ccDAO();
 
 
-
         /**Inside this onClickListener is all for the API url and the convert button functions*/
         binding.convertButton.setOnClickListener(clk -> {
+            String newInputCurrency = inputCurrency.getText().toString();
+            String newInputAmount = inputAmount.getText().toString();
+            String newOutputCurrency = outputCurrency.getText().toString();
+            saveConversionDataToSharedPreferences(newInputCurrency, newOutputCurrency, newInputAmount);
 
-            Toast.makeText(this, "THIS SHIT IS WORKING, KEEP GOING!!!", Toast.LENGTH_LONG).show();
+
+            Toast.makeText(this, "Conversion saved to database", Toast.LENGTH_LONG).show();
 //          String URL = "https://api.getgeoapi.com/v2/currency/convert?format=json&from=CAD&to=USD&amount=10&api_key=c1f37b28035f89328e61c24caefd20d99f97cdf0&format=json";
             String inputCurrency = binding.inputCurrency.getText().toString().toUpperCase();
             String outputCurrency = binding.outputCurrency.getText().toString().toUpperCase();
@@ -92,6 +118,7 @@ public class ConverterActivity extends AppCompatActivity {
             queue.add(request);
         });
     }
+
     private String getCurrentTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd-MMM-yyyy \nhh:mm:ss a");
         return sdf.format(new Date());
@@ -112,10 +139,21 @@ public class ConverterActivity extends AppCompatActivity {
         } else if (item.getItemId() == R.id.item2) {
             Intent conversionRecycler = new Intent(this, ConversionRecycler.class);
             startActivity(conversionRecycler);
+        } else if (item.getItemId() == R.id.item3) {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle(getString(R.string.instructions));
+            alertDialogBuilder.setMessage(getString(R.string.instruction_text));
+
+            alertDialogBuilder.setPositiveButton("Got It", (dialog, which) -> dialog.dismiss());
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+
         }
         return true;
     }
-    private void saveCurrencyConversionToDatabase(){
+
+    private void saveCurrencyConversionToDatabase() {
 
         String inputAmount = binding.inputAmount.getText().toString();
         String outputAmount = binding.outputAmount.getText().toString();
@@ -130,8 +168,17 @@ public class ConverterActivity extends AppCompatActivity {
         conversion.timeExecuted = getCurrentTime();
 
         Executor thread = Executors.newSingleThreadExecutor();
-        thread.execute(()->{
+        thread.execute(() -> {
             cDAO.insertConversion(conversion);
         });
     }
+
+    private void saveConversionDataToSharedPreferences(String inputCurrency, String outputCurrency, String inputAmount) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("inputCurrency", inputCurrency);
+        editor.putString("outputCurrency", outputCurrency);
+        editor.putString("inputAmount", inputAmount);
+        editor.apply();
+    }
+
 }

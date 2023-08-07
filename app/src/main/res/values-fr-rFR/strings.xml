@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Projet final</string>
+    <string name="save_this_conversion">Enregistrer cette conversion</string>
+    <string name="show_saved_query">Afficher les conversions enregistrées</string>
+    <string name="instructions">Instructions</string>
+    <string name="convert">Convertir</string>
+    <string name="amount">Montante</string>
+    <string name="currency">Monnaie</string>
+    <string name="enter_amount">Saisissez le montant:</string>
+    <string name="welcome">Bienvenue dans le convertisseur de devises</string>
+    <string name="enter_currency">Entrer la devise</string>
+    <string name="instruction_text">"Voici des instructions sur l'utilisation de l'application :\n\n"
+                    "1. Entrez la devise d'entrée, la devise de sortie et le montant d'entrée.\n"
+                    "2. Cliquez sur le bouton Convertir pour obtenir le montant converti.\n"
+                    "3. La conversion sera enregistrée dans la base de données.\n"
+                    "4. Vous pouvez afficher les conversions enregistrées dans la vue Recycler.\n"
+                    "5. Utilisez le menu des options pour accéder aux différentes fonctionnalités."</string>
+</resources>

@@ -6,12 +6,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
@@ -61,6 +63,7 @@ public class ConversionsRecyclerViewAdapter extends RecyclerView.Adapter<Convers
         TextView outputCurrencyDatabase;
         TextView inputAmountDatabase;
         TextView outputAmountDatabase;
+        Button timeExecButton;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -69,28 +72,34 @@ public class ConversionsRecyclerViewAdapter extends RecyclerView.Adapter<Convers
             outputCurrencyDatabase = itemView.findViewById(R.id.outputCurrencyDatabase);
             inputAmountDatabase = itemView.findViewById(R.id.inputAmountDatabase);
             outputAmountDatabase = itemView.findViewById(R.id.outputAmountDatabase);
+            timeExecButton = itemView.findViewById(R.id.timeExecButton);
 
-//            itemView.setOnClickListener(clk -> {
-//
-////            });
-            itemView.setOnClickListener(d -> {
+
+            itemView.setOnClickListener(clk -> {
+                    deleteConversion();
+
+            });
+
+            timeExecButton.setOnClickListener(clk ->{
                 int position = getAbsoluteAdapterPosition();
 
                 if (position != RecyclerView.NO_POSITION) {
+
                     CurrencyConverter cConverter = converterList.get(position);
-
-                    ConversionTimeFragment frag = new ConversionTimeFragment(cConverter);
                     FragmentManager fMgr = ((AppCompatActivity) context).getSupportFragmentManager();
+                    ConversionTimeFragment frag = new ConversionTimeFragment(cConverter);
 
-                    fMgr.beginTransaction().replace(R.id.conversionTimeLayout, frag).addToBackStack(null).commit();
-                    deleteConversion();
-                }
+
+
+                    FragmentTransaction tx = fMgr.beginTransaction();
+                    tx.replace(R.id.fragmentLocation, frag);
+                    tx.commit();
+
+            }
+
             });
 
-
-
         }
-
         public void deleteConversion() {
             int position = getAbsoluteAdapterPosition();
 

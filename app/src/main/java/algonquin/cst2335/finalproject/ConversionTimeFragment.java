@@ -21,7 +21,7 @@ public class ConversionTimeFragment extends Fragment {
 
         TimeLayoutBinding binding = TimeLayoutBinding.inflate(inflater);
 
-        binding.timeExecTextView.setText(currencyConverter.timeExecuted);
+        binding.timeExecTextView.setText("  " + currencyConverter.timeExecuted);
 
         return binding.getRoot();
     }
