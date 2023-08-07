@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/inputCurrencyDatabase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="inputCurrency"
+ />
+
+    <TextView
+        android:id="@+id/outputCurrencyDatabase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="outPutCurrency"
+/>
+
+    <TextView
+        android:id="@+id/inputAmountDatabase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="inputAmount" />
+
+    <TextView
+        android:id="@+id/outputAmountDatabase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="outputAmount" />
+</LinearLayout>

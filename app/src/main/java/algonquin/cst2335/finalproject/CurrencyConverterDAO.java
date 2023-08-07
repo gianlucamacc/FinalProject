@@ -17,6 +17,6 @@ public interface CurrencyConverterDAO {
      List<CurrencyConverter> getAllConversions();
 
      @Delete
-     void deleteConversion(CurrencyConverter currencyConverter);
+     void deleteConversion(CurrencyConverter conversion);
 
 }

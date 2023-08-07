@@ -1,5 +1,6 @@
 package algonquin.cst2335.finalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -47,10 +48,7 @@ public class ConverterActivity extends AppCompatActivity {
         /**This is the Currency Conversion database*/
         ConversionsDatabase db = Room.databaseBuilder(getApplicationContext(), ConversionsDatabase.class, "database-name").build();
         cDAO = db.ccDAO();
-        Executor thread = Executors.newSingleThreadExecutor();
-        thread.execute(()->{
 
-        });
 
 
         /**Inside this onClickListener is all for the API url and the convert button functions*/
@@ -106,7 +104,8 @@ public class ConverterActivity extends AppCompatActivity {
             saveCurrencyConversionToDatabase();
             Toast.makeText(this, "Currency conversion is saved to the database", Toast.LENGTH_LONG).show();
         } else if (item.getItemId() == R.id.item2) {
-            Toast.makeText(this, "You clicked on Item 2", Toast.LENGTH_LONG).show();
+            Intent conversionRecycler = new Intent(this, ConversionRecycler.class);
+            startActivity(conversionRecycler);
         }
         return true;
     }
