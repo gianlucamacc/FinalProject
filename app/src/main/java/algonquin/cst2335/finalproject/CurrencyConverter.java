@@ -18,5 +18,8 @@ public class CurrencyConverter {
     @ColumnInfo(name = "Output Amount")
     public String outputAmount;
 
+    @ColumnInfo(name = "Time Conversion Executed")
+    public String timeExecuted;
+
 
 }

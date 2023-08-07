@@ -66,11 +66,14 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:text="Amount"
-        android:textSize="16sp"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/outputCurrency"
+        app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
 
     <EditText
         android:id="@+id/outputCurrency"
@@ -79,8 +82,8 @@
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="Currency"
-        android:maxLength="3"
         android:inputType="text"
+        android:maxLength="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

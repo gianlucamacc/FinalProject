@@ -20,6 +20,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -90,6 +92,10 @@ public class ConverterActivity extends AppCompatActivity {
             queue.add(request);
         });
     }
+    private String getCurrentTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd-MMM-yyyy \nhh:mm:ss a");
+        return sdf.format(new Date());
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -121,6 +127,7 @@ public class ConverterActivity extends AppCompatActivity {
         conversion.outputAmount = outputAmount;
         conversion.inputCurrency = inputCurrency;
         conversion.outputCurrency = outputCurrency;
+        conversion.timeExecuted = getCurrentTime();
 
         Executor thread = Executors.newSingleThreadExecutor();
         thread.execute(()->{
