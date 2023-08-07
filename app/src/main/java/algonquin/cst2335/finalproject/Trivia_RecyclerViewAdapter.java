@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
@@ -80,11 +82,26 @@ public class Trivia_RecyclerViewAdapter extends RecyclerView.Adapter<Trivia_Recy
              scoreRecycler = itemView.findViewById(R.id.scoreRecycler);
              timeRecycler = itemView.findViewById(R.id.timeRecycler);
 
-             itemView.setOnClickListener(l->{
-                 deleteConversion();
-             });
+//             itemView.setOnClickListener(l->{
+//                 deleteConversion();
+//             });
+                itemView.setOnClickListener(d -> {
+                    int position = getAdapterPosition();
 
+                    if (position != RecyclerView.NO_POSITION) {
+                        TriviaScores observeScore = scoreList.get(position);
+
+                        DetailsFragment frag = new DetailsFragment(observeScore);
+                        FragmentManager fMgr = ((AppCompatActivity) context).getSupportFragmentManager();
+
+                        fMgr.beginTransaction().replace(R.id.fragmentLocation, frag).addToBackStack(null).commit();
+
+                        deleteConversion();
                     }
+            });
+
+
+        }
         public void deleteConversion() {
             int position = getAdapterPosition();
 

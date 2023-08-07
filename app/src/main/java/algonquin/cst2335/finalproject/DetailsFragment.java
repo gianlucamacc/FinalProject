@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import algonquin.cst2335.finalproject.databinding.DetailsLayoutBinding;
+
 public class DetailsFragment extends Fragment {
 
     TriviaScores selected;
@@ -16,7 +18,9 @@ public class DetailsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        DetailsLayoutBinding binding = DetailsLayoutBinding.inflate(inflater);
+        binding.timeTaken.setText(selected.timeTaken);
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return binding.getRoot();
     }
 }
