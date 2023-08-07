@@ -39,13 +39,14 @@ public class Trivia_RecyclerViewAdapter extends RecyclerView.Adapter<Trivia_Recy
 
     @Override
     public void onBindViewHolder(@NonNull Trivia_RecyclerViewAdapter.MyViewHolder holder, int position) {
-//        holder.questionView.setText(questionModels.get(position).getQuestion());
+
         holder.userNameRecycler.setText(scoreList.get(position).userName);
         holder.scoreRecycler.setText(scoreList.get(position).scoreString);
 //        holder.answerView3.setText(questionModels.get(position).getAnswerList().get(3));
 //        holder.answerView4.setText(questionModels.get(position).getAnswerList().get(2));
 //        holder.tempAnswer.setText((questionModels.get(position).getCorrectAnswer()));
 //        holder.answerView4.setText(questionModels.get(position).getCorrectAnswer());
+//        holder.questionView.setText(questionModels.get(position).getQuestion());
 
     }
 
