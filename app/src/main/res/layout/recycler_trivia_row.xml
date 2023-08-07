@@ -10,11 +10,17 @@
         android:id="@+id/userNameRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="name goes here" />
+        android:text="name goes here"
+
+        />
+
 
     <TextView
+        android:layout_marginTop="5dp"
         android:id="@+id/scoreRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="score goes here" />
+        android:text="score goes here"
+        android:layout_marginBottom="10dp"
+        />
 </LinearLayout>

@@ -21,8 +21,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -254,6 +256,7 @@ public class TriviaActivity extends AppCompatActivity {
 
             scores.userName = userName;
             scores.scoreString = scoreString;
+//            scores.timeTaken = getCurrentTime();
 
             Executor thread = Executors.newSingleThreadExecutor();
             thread.execute(()->{
@@ -274,9 +277,15 @@ public class TriviaActivity extends AppCompatActivity {
 
         });
 
+
+
+
         }
 
-
+    private String getCurrentTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd-MMM-yyyy \nhh:mm:ss a");
+        return sdf.format(new Date());
+    }
 
 
 

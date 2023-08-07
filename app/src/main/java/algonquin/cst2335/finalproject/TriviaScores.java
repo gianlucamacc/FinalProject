@@ -13,6 +13,9 @@ public class TriviaScores {
     @ColumnInfo(name = "Score")
     public String scoreString;
 
+//    @ColumnInfo(name = "Time Taken")
+//    public String timeTaken;
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     public int id;
