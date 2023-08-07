@@ -6,9 +6,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
@@ -67,12 +70,23 @@ public class ConversionsRecyclerViewAdapter extends RecyclerView.Adapter<Convers
             inputAmountDatabase = itemView.findViewById(R.id.inputAmountDatabase);
             outputAmountDatabase = itemView.findViewById(R.id.outputAmountDatabase);
 
-            itemView.setOnClickListener(clk -> {
+//            itemView.setOnClickListener(clk -> {
+//
+////            });
+            itemView.setOnClickListener(d -> {
+                int position = getAbsoluteAdapterPosition();
 
-                deleteConversion();
+                if (position != RecyclerView.NO_POSITION) {
+                    CurrencyConverter cConverter = converterList.get(position);
 
+                    ConversionTimeFragment frag = new ConversionTimeFragment(cConverter);
+                    FragmentManager fMgr = ((AppCompatActivity) context).getSupportFragmentManager();
 
+                    fMgr.beginTransaction().replace(R.id.conversionTimeLayout, frag).addToBackStack(null).commit();
+                    deleteConversion();
+                }
             });
+
 
 
         }
