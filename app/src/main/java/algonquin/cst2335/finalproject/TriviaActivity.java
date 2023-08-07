@@ -67,7 +67,8 @@ public class TriviaActivity extends AppCompatActivity {
         ActivityTriviaBinding binding = ActivityTriviaBinding.inflate( getLayoutInflater());
         setContentView(binding.getRoot());
 
-        TriviaDatabase db = Room.databaseBuilder(getApplicationContext(), TriviaDatabase.class, "TriviaScores-name").build();
+        TriviaDatabase db = Room.databaseBuilder(getApplicationContext(), TriviaDatabase.class, "TriviaScores-name").fallbackToDestructiveMigration()
+                .build();
         tDAO = db.tDAO();
 
 
@@ -256,7 +257,7 @@ public class TriviaActivity extends AppCompatActivity {
 
             scores.userName = userName;
             scores.scoreString = scoreString;
-//            scores.timeTaken = getCurrentTime();
+            scores.timeTaken = getCurrentTime();
 
             Executor thread = Executors.newSingleThreadExecutor();
             thread.execute(()->{

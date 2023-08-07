@@ -55,6 +55,7 @@ public class Trivia_RecyclerViewAdapter extends RecyclerView.Adapter<Trivia_Recy
 
         holder.userNameRecycler.setText(scoreList.get(position).userName);
         holder.scoreRecycler.setText(scoreList.get(position).scoreString);
+        holder.timeRecycler.setText(scoreList.get(position).timeTaken);
 //        holder.answerView3.setText(questionModels.get(position).getAnswerList().get(3));
 //        holder.answerView4.setText(questionModels.get(position).getAnswerList().get(2));
 //        holder.tempAnswer.setText((questionModels.get(position).getCorrectAnswer()));
@@ -71,10 +72,13 @@ public class Trivia_RecyclerViewAdapter extends RecyclerView.Adapter<Trivia_Recy
     public class MyViewHolder extends RecyclerView.ViewHolder{
      TextView userNameRecycler;
      TextView scoreRecycler;
+
+     TextView timeRecycler;
         public MyViewHolder(@NonNull View itemView){
                     super(itemView);
              userNameRecycler = itemView.findViewById(R.id.userNameRecycler);
              scoreRecycler = itemView.findViewById(R.id.scoreRecycler);
+             timeRecycler = itemView.findViewById(R.id.timeRecycler);
 
              itemView.setOnClickListener(l->{
                  deleteConversion();
