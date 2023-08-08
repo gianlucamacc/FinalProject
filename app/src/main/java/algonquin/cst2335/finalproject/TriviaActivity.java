@@ -1,5 +1,7 @@
 package algonquin.cst2335.finalproject;
 
+import static android.net.Uri.decode;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,6 +34,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.concurrent.Executor;
@@ -39,6 +42,9 @@ import java.util.concurrent.Executors;
 
 import algonquin.cst2335.finalproject.databinding.ActivityMainBinding;
 import algonquin.cst2335.finalproject.databinding.ActivityTriviaBinding;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 
 
 
@@ -156,16 +162,18 @@ public class TriviaActivity extends AppCompatActivity {
 
                                 JSONArray incorrect_answers = resultPosition.getJSONArray("incorrect_answers");
 
-                                category = resultPosition.getString("category");
-                                question = resultPosition.getString("question");
-                                difficulty = resultPosition.getString("difficulty");
-                                correctAnswer = resultPosition.getString("correct_answer");
+                                category = (resultPosition.getString("category"));
+                                question = (resultPosition.getString("question"));
+                                difficulty = (resultPosition.getString("difficulty"));
+                                correctAnswer = (resultPosition.getString("correct_answer"));
+
+
 
 
                                 ArrayList<String> answerList = new ArrayList<>();
-                                answerList.add(resultPosition.getString("correct_answer"));
+//                                answerList.add(resultPosition.getString("correct_answer"));
+                                answerList.add(correctAnswer);
                                 for(int j = 0; j < incorrect_answers.length(); j++){
-
                                     answerList.add(incorrect_answers.getString(j));
                                 }
 
