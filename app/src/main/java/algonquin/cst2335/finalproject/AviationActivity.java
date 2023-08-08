@@ -21,8 +21,6 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-
-
 import algonquin.cst2335.finalproject.databinding.ActivityAviationBinding;
 
 public class AviationActivity extends AppCompatActivity {
