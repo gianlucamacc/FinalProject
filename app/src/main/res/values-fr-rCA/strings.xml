@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FinalProject</string>
+    <string name="previousScores">Partitions précédentes</string>
+    <string name="TriviaQuestionGenerator">Générateur de questions triviales</string>
+    <string name="SelectNumber">Sélectionnez le nombre de questions</string>
+    <string name="SelectCategory">Choisir une catégorie</string>
+    <string name="getQUiz">Obtenir le questionnaire</string>
+    <string name="NextQuestion">" question suivante"</string>
+    <string name="EnterName">"Entrez votre nom! "</string>
+    <string name="nameHere">"Le nom va ici "</string>
+    <string name="yourScoreIs">Ton score est:</string>
+    <string name="SaveScore">Save your Score</string>
+</resources>
