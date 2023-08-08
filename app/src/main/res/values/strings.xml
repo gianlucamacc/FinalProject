@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">FinalProject</string>
+    <string name="previousScores">"Previous Scores: "</string>
+    <string name="TriviaQuestionGenerator">Trivia Question Generator</string>
+    <string name="SelectNumber">Select Number of Questions</string>
+    <string name="SelectCategory">Select Category</string>
+    <string name="getQUiz" >Get Quiz</string>
+    <string name="NextQuestion">Next Question</string>
+    <string name="EnterName">Enter your name!</string>
+    <string name="nameHere">Name Goes Here</string>
+    <string name="yourScoreIs">Your String Is</string>
+    <string name="SaveScore">Save your Score</string>
 </resources>

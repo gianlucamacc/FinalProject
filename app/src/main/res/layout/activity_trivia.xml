@@ -36,7 +36,7 @@
         android:id="@+id/categoryOfQuestionsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Category"
+        android:text="@string/SelectCategory"
         android:layout_below="@id/numberOfQuestions"
         />
 
@@ -70,7 +70,8 @@
         android:layout_below="@id/categoryOfQuestions"
         android:backgroundTint="@color/black"
 
-        android:text="Get Quiz" />
+        android:text="@string/getQUiz"
+        />
 
     <Button
         android:id="@+id/nextQuestionSet"
@@ -78,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/RadioGroup"
         android:backgroundTint="@color/black"
-        android:text="next Question"
+        android:text="@string/NextQuestion"
         android:visibility="invisible"/>
     <RadioGroup
         android:id="@+id/RadioGroup"
@@ -130,7 +131,7 @@
         android:id="@+id/userNamePrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter your name!"
+        android:text="@string/EnterName"
         android:layout_below="@+id/nextQuestionSet"
         android:visibility="invisible"
         />
@@ -139,7 +140,7 @@
         android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Name Goes here"
+        android:hint="@string/nameHere"
         android:layout_below="@id/userNamePrompt"
         android:visibility="invisible"
         />
@@ -147,7 +148,7 @@
         android:id="@+id/score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your Score is:"
+        android:text="@string/yourScoreIs"
         android:layout_alignParentRight="true"
         android:visibility="invisible"
 
@@ -156,7 +157,7 @@
         android:id="@+id/saveScoreButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save your Score!!"
+        android:text="@string/SaveScore"
         android:layout_below="@id/userName"
         android:visibility="invisible"
         />
