@@ -88,6 +88,17 @@ public class ConverterActivity extends AppCompatActivity {
             String newInputAmount = inputAmount.getText().toString();
             String newOutputCurrency = outputCurrency.getText().toString();
             saveConversionDataToSharedPreferences(newInputCurrency, newOutputCurrency, newInputAmount);
+            if (newInputAmount.isEmpty()) {
+                // Handle empty inputAmount, for example, show a toast message
+                Toast.makeText(this, "Please enter an amount to convert", Toast.LENGTH_SHORT).show();
+                return; // Exit the onClickListener
+            } else if (newInputCurrency.isEmpty() || newInputCurrency.length() != 3) {
+                Toast.makeText(this, "Please enter a 3 letter currency", Toast.LENGTH_SHORT).show();
+                return;
+            } else if (newOutputCurrency.isEmpty() || newOutputCurrency.length() != 3) {
+                Toast.makeText(this, "Please enter a 3 letter currency", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
 
             Toast.makeText(this, "Converted", Toast.LENGTH_LONG).show();
