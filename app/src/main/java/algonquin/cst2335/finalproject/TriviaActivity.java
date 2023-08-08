@@ -6,12 +6,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.appcompat.widget.Toolbar;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -58,6 +64,9 @@ public class TriviaActivity extends AppCompatActivity {
 
     int scoreCount = 0;
 
+    SharedPreferences prefs;
+
+    EditText numberOfQuestions;
 
 
     @Override
@@ -66,6 +75,14 @@ public class TriviaActivity extends AppCompatActivity {
 //        setContentView(R.layout.activity_trivia);
         ActivityTriviaBinding binding = ActivityTriviaBinding.inflate( getLayoutInflater());
         setContentView(binding.getRoot());
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(binding.toolbar);
+        toolbar.showOverflowMenu();
+
+        prefs = getSharedPreferences("myData", Context.MODE_PRIVATE);
+        numberOfQuestions = findViewById(R.id.numberOfQuestions);
+        String savedNumberOfQuestions = prefs.getString("numberOfQuestions", "");
+        numberOfQuestions.setText(savedNumberOfQuestions);
 
         TriviaDatabase db = Room.databaseBuilder(getApplicationContext(), TriviaDatabase.class, "TriviaScores-name").fallbackToDestructiveMigration()
                 .build();
@@ -79,6 +96,21 @@ public class TriviaActivity extends AppCompatActivity {
 
 
         binding.submitButton.setOnClickListener(clk -> {
+
+            String newNumberOfQuestions = numberOfQuestions.getText().toString().trim();
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("numberOfQuestions", newNumberOfQuestions);
+            editor.apply();
+
+
+            binding.questionView.setVisibility(View.VISIBLE);
+            binding.answerView1.setVisibility(View.VISIBLE);
+            binding.answerView2.setVisibility(View.VISIBLE);
+            binding.answerView3.setVisibility(View.VISIBLE);
+            binding.answerView4.setVisibility(View.VISIBLE);
+            binding.nextQuestionSet.setVisibility(View.VISIBLE);
+
+
             String numberOfQuestions = binding.numberOfQuestions.getText().toString().trim();
             String categoryOfQuestions = binding.categoryOfQuestions.getText().toString().trim();
             numberOfQuestions = numberOfQuestions.replaceAll("\\s","");
@@ -142,12 +174,12 @@ public class TriviaActivity extends AppCompatActivity {
 
                                 questionModels.add(model);
 
+                                TriviaQuestionModel firstModel = questionModels.get(count);
                                 binding.questionView.setText(model.getQuestion());
                                 binding.answerView1.setText(model.getAnswerList().get(0));
                                 binding.answerView2.setText(model.getAnswerList().get(1));
                                 binding.answerView3.setText(model.getAnswerList().get(2));
                                 binding.answerView4.setText(model.getAnswerList().get(3));
-
 
 
 
@@ -185,19 +217,15 @@ public class TriviaActivity extends AppCompatActivity {
         binding.nextQuestionSet.setOnClickListener(clickers -> {
 
             // Increment the count to move to the next position in the ArrayList
-            count++;
+
+
 
             // Check if the count is within the valid range of the ArrayList
             if (count < questionModels.size()) {
                 // Get the TriviaQuestionModel at the current count position
                 TriviaQuestionModel model = questionModels.get(count);
 
-                // Update the UI with the new question and answer options
-                binding.questionView.setText(model.getQuestion());
-                binding.answerView1.setText(model.getAnswerList().get(0));
-                binding.answerView2.setText(model.getAnswerList().get(1));
-                binding.answerView3.setText(model.getAnswerList().get(2));
-                binding.answerView4.setText(model.getAnswerList().get(3));
+
 
                 // Check which radio button is checked
                 int selectedId = binding.RadioGroup.getCheckedRadioButtonId();
@@ -205,30 +233,47 @@ public class TriviaActivity extends AppCompatActivity {
                 // Compare the selectedId with each radio button's ID to determine the user's answer
                 String userAnswer = null;
                 if (selectedId == R.id.answerView1) {
-                    userAnswer = model.getAnswerList().get(0);
+                    userAnswer = binding.answerView1.getText().toString();
                 } else if (selectedId == R.id.answerView2) {
-                    userAnswer = model.getAnswerList().get(1);
+                    userAnswer =  binding.answerView2.getText().toString();
                 } else if (selectedId == R.id.answerView3) {
-                    userAnswer = model.getAnswerList().get(2);
+                    userAnswer =  binding.answerView3.getText().toString();
                 } else if (selectedId == R.id.answerView4) {
-                    userAnswer = model.getAnswerList().get(3);
+                    userAnswer =  binding.answerView4.getText().toString();
                 }
 
+                count++;
                 // Compare the user's answer with the correct answer to check if it's correct
-                if (userAnswer.equalsIgnoreCase(model.getCorrectAnswer())) {
+                if (userAnswer.equalsIgnoreCase( binding.ghost.getText().toString())) {
                     // Increment the correct answer count and update the UI with the count
                     // Assuming you have a TextView with the ID 'count' to display the count
                     scoreCount = scoreCount + 10;
-                    binding.count.setText("Correct answer count: " + (++correctAnswerCount) + "(" +(scoreCount) + ")");
+//                    binding.count.setText("Correct answer count: " + (++correctAnswerCount) + "(" +(scoreCount) + ")");
+                    binding.RadioGroup.clearCheck();
+//
 
-                    Toast.makeText(this, "RIGHT", Toast.LENGTH_SHORT).show();
+
+//
+//                    Toast.makeText(this, "yes!", Toast.LENGTH_SHORT).show();
                 } else {
+                    binding.numberOfQuestionsText.setText(userAnswer);
                     // Display a message if the answer is incorrect
-                    Toast.makeText(this, "Incorrect answer!", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(this, "Incorrect answer!", Toast.LENGTH_SHORT).show();
+//
+                    binding.RadioGroup.clearCheck();
+
                 }
-            } else {
+                // Update the UI with the new question and answer options
+                binding.questionView.setText(model.getQuestion());
+                binding.answerView1.setText(model.getAnswerList().get(0));
+                binding.answerView2.setText(model.getAnswerList().get(1));
+                binding.answerView3.setText(model.getAnswerList().get(2));
+                binding.answerView4.setText(model.getAnswerList().get(3));
+                binding.ghost.setText(model.getCorrectAnswer());
+            }
+            else {
                 // If count exceeds the size of the ArrayList, display a message indicating the end of questions
-                Toast.makeText(this, "End of questions", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "You Scored: " + correctAnswerCount + " / " + questionModels.size() + "  " + "(" + scoreCount + ")", Toast.LENGTH_LONG).show();
                 binding.userNamePrompt.setVisibility(View.VISIBLE);
                 binding.userName.setVisibility(View.VISIBLE);
                 binding.score.setVisibility(View.VISIBLE);
@@ -244,6 +289,7 @@ public class TriviaActivity extends AppCompatActivity {
 
 
             }
+
 
             /**
              * end of second click listener
@@ -279,6 +325,13 @@ public class TriviaActivity extends AppCompatActivity {
         });
 
 
+        binding.helpButton.setOnClickListener(o ->{
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("Quiz Options: ");
+            alertDialogBuilder.setMessage("General, Video Games, Celebrities, Sports");
+            alertDialogBuilder.setPositiveButton("Delete", (dialog, which) -> {});
+
+        });
 
 
         }

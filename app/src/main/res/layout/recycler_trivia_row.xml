@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
+    android:backgroundTint="@color/black"
+    android:orientation="vertical">
 
     <TextView
+        android:layout_marginTop="10dp"
         android:id="@+id/userNameRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,19 +17,19 @@
 
 
     <TextView
-        android:layout_marginTop="5dp"
         android:id="@+id/scoreRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="score goes here"
-        android:layout_marginBottom="10dp"
-        />
-    <TextView
         android:layout_marginTop="5dp"
-        android:id="@+id/timeRecycler"
-        android:layout_width="match_parent"
+        android:text="score goes here" />
+
+
+
+    <Button
+        android:id="@+id/getTimeButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="score goes here"
-        android:layout_marginBottom="10dp"
-        />
+        android:backgroundTint="@color/black"
+        android:text="get time" />
+
 </LinearLayout>

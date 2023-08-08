@@ -7,12 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".TriviaActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
     <TextView
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Trivia Question Generator"
-        />
+        android:text="Trivia Question Generator" />
     <TextView
         android:id="@+id/numberOfQuestionsText"
         android:layout_width="wrap_content"
@@ -49,45 +54,36 @@
         android:layout_below="@id/categoryOfQuestionsText"
 
      />
-    <TextView
-        android:id="@+id/quizListTitle"
+
+    <Button
+        android:id="@+id/helpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quiz List"
         android:layout_alignParentRight="true"
-        />
-    <TextView
-        android:id="@+id/quizList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-General \n -Video Games \n -Celebrities \n -Sports"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/quizListTitle"
-        />
-    <TextView
-        android:id="@+id/count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="correct "
-        android:layout_below="@+id/quizList"
-        android:layout_alignParentRight="true"
-        />
+        android:backgroundTint="@color/black"
+        android:text="Help" />
+
+
+
 
 
     <Button
         android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get Quiz"
         android:layout_below="@id/categoryOfQuestions"
- />
+        android:backgroundTint="@color/black"
+
+        android:text="Get Quiz" />
+
     <Button
         android:id="@+id/nextQuestionSet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/RadioGroup"
+        android:backgroundTint="@color/black"
         android:text="next Question"
-        />
+        android:visibility="invisible"/>
     <RadioGroup
         android:id="@+id/RadioGroup"
         android:layout_width="wrap_content"
@@ -97,36 +93,41 @@
             android:id="@+id/questionView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="QUESITON goes here"
+
             android:layout_below="@id/submitButton"
+            android:visibility="invisible"
             />
         <RadioButton
             android:id="@+id/answerView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="question1 goes here"
+
             android:layout_below="@id/questionView"
+            android:visibility="invisible"
             />
         <RadioButton
             android:id="@+id/answerView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="question2 goes here"
+
             android:layout_below="@id/answerView1"
+            android:visibility="invisible"
             />
         <RadioButton
             android:id="@+id/answerView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="question3 goes here"
+
             android:layout_below="@id/answerView2"
+            android:visibility="invisible"
             />
         <RadioButton
             android:id="@+id/answerView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="question4 goes here"
+
             android:layout_below="@id/answerView3"
+            android:visibility="invisible"
             />
     </RadioGroup>
     <TextView
@@ -164,14 +165,23 @@
         android:layout_below="@id/userName"
         android:visibility="invisible"
         />
+
     <Button
         android:id="@+id/viewScoresButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/count"
+        android:layout_below="@+id/helpButton"
         android:layout_alignParentRight="true"
-        android:text="View scores"
+        android:backgroundTint="@color/black"
 
+        android:text="View scores" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:id="@+id/ghost"
+        android:layout_below="@+id/viewScoresButton"
         />
 
 

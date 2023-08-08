@@ -6,10 +6,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -57,7 +59,7 @@ public class Trivia_RecyclerViewAdapter extends RecyclerView.Adapter<Trivia_Recy
 
         holder.userNameRecycler.setText(scoreList.get(position).userName);
         holder.scoreRecycler.setText(scoreList.get(position).scoreString);
-        holder.timeRecycler.setText(scoreList.get(position).timeTaken);
+
 //        holder.answerView3.setText(questionModels.get(position).getAnswerList().get(3));
 //        holder.answerView4.setText(questionModels.get(position).getAnswerList().get(2));
 //        holder.tempAnswer.setText((questionModels.get(position).getCorrectAnswer()));
@@ -76,16 +78,21 @@ public class Trivia_RecyclerViewAdapter extends RecyclerView.Adapter<Trivia_Recy
      TextView scoreRecycler;
 
      TextView timeRecycler;
+        Button getTimeButton = itemView.findViewById(R.id.getTimeButton);
         public MyViewHolder(@NonNull View itemView){
                     super(itemView);
              userNameRecycler = itemView.findViewById(R.id.userNameRecycler);
              scoreRecycler = itemView.findViewById(R.id.scoreRecycler);
-             timeRecycler = itemView.findViewById(R.id.timeRecycler);
+
 
 //             itemView.setOnClickListener(l->{
 //                 deleteConversion();
 //             });
                 itemView.setOnClickListener(d -> {
+                    deleteConversion();
+            });
+
+                getTimeButton.setOnClickListener(p->{
                     int position = getAdapterPosition();
 
                     if (position != RecyclerView.NO_POSITION) {
@@ -96,9 +103,12 @@ public class Trivia_RecyclerViewAdapter extends RecyclerView.Adapter<Trivia_Recy
 
                         fMgr.beginTransaction().replace(R.id.fragmentLocation, frag).addToBackStack(null).commit();
 
-                        deleteConversion();
+
                     }
-            });
+                });
+
+
+
 
 
         }
