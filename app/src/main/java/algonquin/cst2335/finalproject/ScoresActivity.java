@@ -27,11 +27,12 @@ TriviaDAO tDAO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_scores);
         Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(findViewById(R.id.toolbar2));
         toolbar2.showOverflowMenu();
-        setContentView(R.layout.activity_scores);
+
         RecyclerView recyclerView = findViewById(R.id.myRecyclerView);
 
         TriviaDatabase db = Room.databaseBuilder(getApplicationContext(), TriviaDatabase.class, "TriviaScores-name").build();
@@ -50,12 +51,7 @@ TriviaDAO tDAO;
             });
         });
 
-        Button returnButton = findViewById(R.id.returnFromScoreButton);
 
-        returnButton.setOnClickListener(k->{
-            Intent vari = new Intent(this,TriviaActivity.class);
-            startActivity(vari);
-        });
 
     }
     @Override

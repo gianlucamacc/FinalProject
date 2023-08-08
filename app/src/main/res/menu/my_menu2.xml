@@ -4,8 +4,9 @@
 
     <item
         android:id="@+id/item1"
-        android:title="View Scores"
+        android:title="Back to Quiz"
         app:showAsAction="always"
+        
         />
 
 </menu>

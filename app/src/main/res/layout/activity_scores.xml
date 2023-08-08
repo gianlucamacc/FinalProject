@@ -13,6 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/black"
+        app:titleTextColor="@color/white"
+        android:background="@color/black"
+        app:theme="@style/ToolBarStyle"
 
         />
 
@@ -29,12 +32,7 @@
         android:layout_height="wrap_content"
         />
 
-    <Button
-        android:id="@+id/returnFromScoreButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
-        android:text="Back to Quiz" />
+
 
     <FrameLayout
         android:id="@+id/fragmentLocation"
