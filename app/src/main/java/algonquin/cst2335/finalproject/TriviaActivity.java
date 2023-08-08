@@ -1,5 +1,6 @@
 package algonquin.cst2335.finalproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +12,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -318,23 +321,42 @@ public class TriviaActivity extends AppCompatActivity {
 
 
         });
-        binding.viewScoresButton.setOnClickListener(ck->{
-            Intent scoresActivityVariable = new Intent(this,ScoresActivity.class);
-            startActivity(scoresActivityVariable);
 
-        });
-
-
-        binding.helpButton.setOnClickListener(o ->{
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            alertDialogBuilder.setTitle("Quiz Options: ");
-            alertDialogBuilder.setMessage("General, Video Games, Celebrities, Sports");
-            alertDialogBuilder.setPositiveButton("Delete", (dialog, which) -> {});
-
-        });
 
 
         }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.my_menu, menu);
+
+
+
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if( item.getItemId() == R.id.item1 )
+        {
+            Intent scoresActivityVariable = new Intent(this,ScoresActivity.class);
+            startActivity(scoresActivityVariable);
+
+
+        }
+        else if (item.getItemId() == R.id.item2)
+        {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("Quiz Options: ");
+            alertDialogBuilder.setMessage("General, Video Games, Celebrities, Sports");
+            alertDialogBuilder.setPositiveButton("Got it!", (dialog, which) -> {});
+            alertDialogBuilder.show();
+
+
+        }
+
+        return true;
+    }
 
     private String getCurrentTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd-MMM-yyyy \nhh:mm:ss a");

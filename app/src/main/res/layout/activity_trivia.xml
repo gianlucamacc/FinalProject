@@ -9,15 +9,19 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
         />
 
     <TextView
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Trivia Question Generator" />
+        android:text="Trivia Question Generator"
+        android:layout_below="@+id/toolbar"
+
+        />
     <TextView
         android:id="@+id/numberOfQuestionsText"
         android:layout_width="wrap_content"
@@ -54,17 +58,6 @@
         android:layout_below="@id/categoryOfQuestionsText"
 
      />
-
-    <Button
-        android:id="@+id/helpButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:backgroundTint="@color/black"
-        android:text="Help" />
-
-
-
 
 
     <Button
@@ -152,7 +145,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Your Score is:"
-        android:layout_below="@id/viewScoresButton"
         android:layout_alignParentRight="true"
         android:visibility="invisible"
 
@@ -166,22 +158,12 @@
         android:visibility="invisible"
         />
 
-    <Button
-        android:id="@+id/viewScoresButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/helpButton"
-        android:layout_alignParentRight="true"
-        android:backgroundTint="@color/black"
-
-        android:text="View scores" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
         android:id="@+id/ghost"
-        android:layout_below="@+id/viewScoresButton"
+        android:layout_below="@+id/saveScoreButton"
         />
 
 
