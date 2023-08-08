@@ -23,12 +23,34 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+/**
+ * RecyclerView adapter for displaying currency conversion records in a list.
+ */
 public class ConversionsRecyclerViewAdapter extends RecyclerView.Adapter<ConversionsRecyclerViewAdapter.MyViewHolder> {
+    /**
+     * Context of the adapter.
+     */
     Context context;
+    /**
+     * List of currency converter objects.
+     */
     List<CurrencyConverter> converterList;
+    /**
+     * Database instance.
+     */
     ConversionsDatabase db;
+    /**
+     * CurrencyConverterDAO instance.
+     */
     CurrencyConverterDAO cDAO;
 
+    /**
+     * Constructs an instance of the ConversionsRecyclerViewAdapter.
+     *
+     * @param context       The context of the adapter.
+     * @param converterList The list of currency converter objects.
+     * @param db            The database instance.
+     */
     public ConversionsRecyclerViewAdapter(Context context, List<CurrencyConverter> converterList, ConversionsDatabase db) {
         this.context = context;
         this.converterList = converterList;
@@ -58,6 +80,9 @@ public class ConversionsRecyclerViewAdapter extends RecyclerView.Adapter<Convers
         return converterList.size();
     }
 
+    /**
+     * ViewHolder class for managing individual items in the RecyclerView.
+     */
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView inputCurrencyDatabase;
         TextView outputCurrencyDatabase;
@@ -65,7 +90,11 @@ public class ConversionsRecyclerViewAdapter extends RecyclerView.Adapter<Convers
         TextView outputAmountDatabase;
         Button timeExecButton;
 
-
+        /**
+         * Constructs a ViewHolder for managing individual items in the RecyclerView.
+         *
+         * @param itemView The view of the individual item.
+         */
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             inputCurrencyDatabase = itemView.findViewById(R.id.inputCurrencyDatabase);
@@ -76,11 +105,11 @@ public class ConversionsRecyclerViewAdapter extends RecyclerView.Adapter<Convers
 
 
             itemView.setOnClickListener(clk -> {
-                    deleteConversion();
+                deleteConversion();
 
             });
 
-            timeExecButton.setOnClickListener(clk ->{
+            timeExecButton.setOnClickListener(clk -> {
                 int position = getAbsoluteAdapterPosition();
 
                 if (position != RecyclerView.NO_POSITION) {
@@ -90,16 +119,18 @@ public class ConversionsRecyclerViewAdapter extends RecyclerView.Adapter<Convers
                     ConversionTimeFragment frag = new ConversionTimeFragment(cConverter);
 
 
-
                     FragmentTransaction tx = fMgr.beginTransaction();
                     tx.replace(R.id.fragmentLocation, frag);
                     tx.commit();
 
-            }
+                }
 
             });
 
         }
+        /**
+         * Deletes a conversion record from the database and updates the RecyclerView.
+         */
         public void deleteConversion() {
             int position = getAbsoluteAdapterPosition();
 

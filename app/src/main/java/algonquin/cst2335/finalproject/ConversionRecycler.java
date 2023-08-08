@@ -15,10 +15,17 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import algonquin.cst2335.finalproject.databinding.ActivityConversionRecyclerBinding;
-
+/**
+ * An activity that displays a list of currency conversion records using a RecyclerView.
+ */
 public class ConversionRecycler extends AppCompatActivity {
-
+    /**
+     * Binding instance for the activity's layout.
+     */
     ActivityConversionRecyclerBinding binding;
+    /**
+     * CurrencyConverterDAO instance for interacting with the database.
+     */
     CurrencyConverterDAO cDAO;
 
 

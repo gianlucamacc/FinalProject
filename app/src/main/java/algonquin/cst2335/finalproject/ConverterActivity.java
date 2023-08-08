@@ -31,7 +31,10 @@ import java.util.concurrent.Executors;
 
 import algonquin.cst2335.finalproject.databinding.ActivityConverterBinding;
 
-
+/**
+ * This class represents the main activity of the currency converter app.
+ * It allows users to convert currency values and view their conversion history.
+ */
 public class ConverterActivity extends AppCompatActivity {
 
 
@@ -43,7 +46,12 @@ public class ConverterActivity extends AppCompatActivity {
     EditText inputCurrency;
     EditText outputCurrency;
 
-
+    /**
+     * Called when the activity is first created.
+     * Initializes the UI components, handles button clicks, and performs currency conversion.
+     *
+     * @param savedInstanceState A Bundle containing the activity's previously saved state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +90,7 @@ public class ConverterActivity extends AppCompatActivity {
             saveConversionDataToSharedPreferences(newInputCurrency, newOutputCurrency, newInputAmount);
 
 
-            Toast.makeText(this, "Conversion saved to database", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Converted", Toast.LENGTH_LONG).show();
 //          String URL = "https://api.getgeoapi.com/v2/currency/convert?format=json&from=CAD&to=USD&amount=10&api_key=c1f37b28035f89328e61c24caefd20d99f97cdf0&format=json";
             String inputCurrency = binding.inputCurrency.getText().toString().toUpperCase();
             String outputCurrency = binding.outputCurrency.getText().toString().toUpperCase();
@@ -118,19 +126,33 @@ public class ConverterActivity extends AppCompatActivity {
             queue.add(request);
         });
     }
-
+    /**
+     * Returns the current date and time in a formatted string.
+     *
+     * @return A formatted string representing the current date and time.
+     */
     private String getCurrentTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd-MMM-yyyy \nhh:mm:ss a");
         return sdf.format(new Date());
     }
-
+    /**
+     * Creates the options menu in the app's toolbar.
+     *
+     * @param menu The menu to be populated.
+     * @return True if the menu was successfully created, false otherwise.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.my_menu, menu);
         return true;
     }
-
+    /**
+     * Handles the selection of items from the options menu.
+     *
+     * @param item The selected menu item.
+     * @return True if the menu item selection was handled, false otherwise.
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.item1) {
@@ -152,7 +174,9 @@ public class ConverterActivity extends AppCompatActivity {
         }
         return true;
     }
-
+    /**
+     * Saves a currency conversion record to the database.
+     */
     private void saveCurrencyConversionToDatabase() {
 
         String inputAmount = binding.inputAmount.getText().toString();
@@ -172,7 +196,13 @@ public class ConverterActivity extends AppCompatActivity {
             cDAO.insertConversion(conversion);
         });
     }
-
+    /**
+     * Saves conversion data to SharedPreferences for future use.
+     *
+     * @param inputCurrency  The input currency code.
+     * @param outputCurrency The output currency code.
+     * @param inputAmount    The input amount.
+     */
     private void saveConversionDataToSharedPreferences(String inputCurrency, String outputCurrency, String inputAmount) {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("inputCurrency", inputCurrency);
