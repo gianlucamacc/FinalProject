@@ -177,12 +177,14 @@ public class TriviaActivity extends AppCompatActivity {
 
                                 questionModels.add(model);
 
-                                TriviaQuestionModel firstModel = questionModels.get(count);
-                                binding.questionView.setText(model.getQuestion());
-                                binding.answerView1.setText(model.getAnswerList().get(0));
-                                binding.answerView2.setText(model.getAnswerList().get(1));
-                                binding.answerView3.setText(model.getAnswerList().get(2));
-                                binding.answerView4.setText(model.getAnswerList().get(3));
+//                                TriviaQuestionModel firstModel = questionModels.get(count);
+//                                binding.questionView.setText(firstModel.getQuestion());
+//                                binding.answerView1.setText(firstModel.getAnswerList().get(0));
+//                                binding.answerView2.setText(firstModel.getAnswerList().get(1));
+//                                binding.answerView3.setText(firstModel.getAnswerList().get(2));
+//                                binding.answerView4.setText(firstModel.getAnswerList().get(3));
+
+
 
 
 
@@ -257,11 +259,11 @@ public class TriviaActivity extends AppCompatActivity {
 
 
 //
-//                    Toast.makeText(this, "yes!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "correct!", Toast.LENGTH_SHORT).show();
                 } else {
                     binding.numberOfQuestionsText.setText(userAnswer);
                     // Display a message if the answer is incorrect
-//                    Toast.makeText(this, "Incorrect answer!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Incorrect answer!", Toast.LENGTH_SHORT).show();
 //
                     binding.RadioGroup.clearCheck();
 
