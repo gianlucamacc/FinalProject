@@ -177,12 +177,12 @@ public class TriviaActivity extends AppCompatActivity {
 
                                 questionModels.add(model);
 
-//                                TriviaQuestionModel firstModel = questionModels.get(count);
-//                                binding.questionView.setText(firstModel.getQuestion());
-//                                binding.answerView1.setText(firstModel.getAnswerList().get(0));
-//                                binding.answerView2.setText(firstModel.getAnswerList().get(1));
-//                                binding.answerView3.setText(firstModel.getAnswerList().get(2));
-//                                binding.answerView4.setText(firstModel.getAnswerList().get(3));
+                                TriviaQuestionModel firstModel = questionModels.get(count);
+                                binding.questionView.setText(firstModel.getQuestion());
+                                binding.answerView1.setText(firstModel.getAnswerList().get(0));
+                                binding.answerView2.setText(firstModel.getAnswerList().get(1));
+                                binding.answerView3.setText(firstModel.getAnswerList().get(2));
+                                binding.answerView4.setText(firstModel.getAnswerList().get(3));
 
 
 
@@ -220,86 +220,60 @@ public class TriviaActivity extends AppCompatActivity {
          */
 
         binding.nextQuestionSet.setOnClickListener(clickers -> {
-
-            // Increment the count to move to the next position in the ArrayList
-
-
-
             // Check if the count is within the valid range of the ArrayList
             if (count < questionModels.size()) {
                 // Get the TriviaQuestionModel at the current count position
                 TriviaQuestionModel model = questionModels.get(count);
 
-
-
                 // Check which radio button is checked
                 int selectedId = binding.RadioGroup.getCheckedRadioButtonId();
+                RadioButton selectedRadioButton = findViewById(selectedId);
 
-                // Compare the selectedId with each radio button's ID to determine the user's answer
-                String userAnswer = null;
-                if (selectedId == R.id.answerView1) {
-                    userAnswer = binding.answerView1.getText().toString();
-                } else if (selectedId == R.id.answerView2) {
-                    userAnswer =  binding.answerView2.getText().toString();
-                } else if (selectedId == R.id.answerView3) {
-                    userAnswer =  binding.answerView3.getText().toString();
-                } else if (selectedId == R.id.answerView4) {
-                    userAnswer =  binding.answerView4.getText().toString();
-                }
-
-                count++;
-                // Compare the user's answer with the correct answer to check if it's correct
-                if (userAnswer.equalsIgnoreCase( binding.ghost.getText().toString())) {
-                    // Increment the correct answer count and update the UI with the count
-                    // Assuming you have a TextView with the ID 'count' to display the count
-                    scoreCount = scoreCount + 10;
-//                    binding.count.setText("Correct answer count: " + (++correctAnswerCount) + "(" +(scoreCount) + ")");
-                    binding.RadioGroup.clearCheck();
-//
-
-
-//
-                    Toast.makeText(this, "correct!", Toast.LENGTH_SHORT).show();
+                if (selectedRadioButton != null) {
+                    // Compare the selected answer with the correct answer to check if it's correct
+                    String userAnswer = selectedRadioButton.getText().toString();
+                    if (userAnswer.equalsIgnoreCase(model.getCorrectAnswer())) {
+                        // Increment the correct answer count and update the UI with the count
+                        scoreCount = scoreCount + 10;
+                        Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+                        correctAnswerCount++;
+                    } else {
+                        Toast.makeText(this, "Incorrect answer!", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    binding.numberOfQuestionsText.setText(userAnswer);
-                    // Display a message if the answer is incorrect
-                    Toast.makeText(this, "Incorrect answer!", Toast.LENGTH_SHORT).show();
-//
+                    // No radio button is selected, show a message
+                    Toast.makeText(this, "Please select an answer.", Toast.LENGTH_SHORT).show();
+                    return; // Exit the click listener
+                }
+
+                count++; // Move to the next question
+
+                // Update the UI with the new question and answer options
+                if (count < questionModels.size()) {
+                    TriviaQuestionModel nextModel = questionModels.get(count);
+                    binding.questionView.setText(nextModel.getQuestion());
+                    binding.answerView1.setText(nextModel.getAnswerList().get(0));
+                    binding.answerView2.setText(nextModel.getAnswerList().get(1));
+                    binding.answerView3.setText(nextModel.getAnswerList().get(2));
+                    binding.answerView4.setText(nextModel.getAnswerList().get(3));
+                    binding.ghost.setText(nextModel.getCorrectAnswer());
                     binding.RadioGroup.clearCheck();
+                } else {
+                    // Display final score and user input fields
+                    binding.userNamePrompt.setVisibility(View.VISIBLE);
+                    binding.userName.setVisibility(View.VISIBLE);
+                    binding.score.setVisibility(View.VISIBLE);
+                    binding.saveScoreButton.setVisibility(View.VISIBLE);
+
+                    binding.score.setText("Your Score is: " + correctAnswerCount + "/" + questionModels.size() + "(" + scoreCount + ")");
+
+                    scoreString = "Your Score is: " + correctAnswerCount + "/" + questionModels.size() + "(" + scoreCount + ")" ;
+                    Toast.makeText(this, "You Scored: " + correctAnswerCount + " / " + questionModels.size() + "  " + "(" + scoreCount + ")", Toast.LENGTH_LONG).show();
 
                 }
-                // Update the UI with the new question and answer options
-                binding.questionView.setText(model.getQuestion());
-                binding.answerView1.setText(model.getAnswerList().get(0));
-                binding.answerView2.setText(model.getAnswerList().get(1));
-                binding.answerView3.setText(model.getAnswerList().get(2));
-                binding.answerView4.setText(model.getAnswerList().get(3));
-                binding.ghost.setText(model.getCorrectAnswer());
             }
-            else {
-                // If count exceeds the size of the ArrayList, display a message indicating the end of questions
-                Toast.makeText(this, "You Scored: " + correctAnswerCount + " / " + questionModels.size() + "  " + "(" + scoreCount + ")", Toast.LENGTH_LONG).show();
-                binding.userNamePrompt.setVisibility(View.VISIBLE);
-                binding.userName.setVisibility(View.VISIBLE);
-                binding.score.setVisibility(View.VISIBLE);
-                binding.saveScoreButton.setVisibility(View.VISIBLE);
-
-
-                binding.score.setText("Your Score is:" + correctAnswerCount + "/" + questionModels.size() + "(" + scoreCount + ")");
-
-                 scoreString = "Your Score is: " + correctAnswerCount + "/" + questionModels.size() + "(" + scoreCount + ")" ;
-
-
-
-
-
-            }
-
-
-            /**
-             * end of second click listener
-             */
         });
+
 
         binding.saveScoreButton.setOnClickListener(c->{
             String userName = binding.userName.getText().toString();
