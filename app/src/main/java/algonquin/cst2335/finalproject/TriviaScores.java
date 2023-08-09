@@ -18,6 +18,7 @@ public class TriviaScores {
     @ColumnInfo(name = "scoreCount")
     public int scoreCount;
 
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     public int id;

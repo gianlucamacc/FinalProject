@@ -5,35 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:backgroundTint="@color/black"
-    android:orientation="vertical">
-
-    <TextView
-        android:layout_marginTop="15dp"
-        android:id="@+id/userNameRecyclerScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="name goes here"
+    android:orientation="vertical"
+    android:layout_marginBottom="5dp">
 
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/black"
+        app:cardCornerRadius="40dp"
+        android:layout_marginBottom="5dp"
+        >
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      >
+      <TextView
+          android:layout_marginTop="15dp"
+          android:id="@+id/userNameRecyclerScore"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="name goes here"
+          android:textColor="@color/white"
+          android:layout_marginLeft="20dp"
+          />
 
-        />
+
+      <TextView
+          android:id="@+id/scoreRecyclerScore"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="score goes here"
+          android:textColor="@color/white"
+          android:layout_marginLeft="20dp"
+          />
+  </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 
-    <TextView
-        android:id="@+id/scoreRecyclerScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
 
-        android:text="score goes here"
-
-        />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top"
-
-        />
 
 
 </LinearLayout>

@@ -160,6 +160,7 @@
         android:text="@string/SaveScore"
         android:layout_below="@id/userName"
         android:visibility="invisible"
+        android:backgroundTint="@color/black"
         />
 
     <TextView
