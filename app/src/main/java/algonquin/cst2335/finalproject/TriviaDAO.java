@@ -17,7 +17,7 @@ public interface TriviaDAO {
     List<TriviaScores> getAllTriviaScores();
 
 
-@Query("SELECT UserName, score FROM TriviaScores ORDER BY scoreCount DESC;")
+@Query("SELECT * FROM TriviaScores ORDER BY scoreCount DESC;")
     List<TriviaScores> getAllByScoreCounts();
 
     @Delete

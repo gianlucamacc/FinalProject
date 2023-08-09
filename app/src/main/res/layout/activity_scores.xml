@@ -34,12 +34,11 @@
         android:layout_below="@id/textView"
         />
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/scoreRecycler"
+        android:id="@+id/scoreRecyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
         android:layout_toRightOf="@id/myRecyclerView"
-        android:layout_marginLeft="30dp"
 
         />
 
@@ -50,7 +49,9 @@
     <FrameLayout
         android:id="@+id/fragmentLocation"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/myRecyclerView"
+        >
 
     </FrameLayout>
 </RelativeLayout>

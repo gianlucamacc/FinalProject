@@ -26,9 +26,6 @@ public class Score_RecyclerViewAdapter extends RecyclerView.Adapter<Score_Recycl
     static Context context;
     ArrayList<TriviaQuestionModel> questionModels;
     static List<TriviaScores> ByScoreList;
-
-
-
     TriviaDatabase db;
     static TriviaDAO tDAO;
 
@@ -73,29 +70,14 @@ public class Score_RecyclerViewAdapter extends RecyclerView.Adapter<Score_Recycl
         TextView userNameRecycler;
         TextView scoreRecycler;
 
-        TextView timeRecycler;
-        Button getTimeButton = itemView.findViewById(R.id.getTimeButton);
+
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            userNameRecycler = itemView.findViewById(R.id.userNameRecycler);
-            scoreRecycler = itemView.findViewById(R.id.scoreRecycler);
+            userNameRecycler = itemView.findViewById(R.id.userNameRecyclerScore);
+            scoreRecycler = itemView.findViewById(R.id.scoreRecyclerScore);
 
-
-            getTimeButton.setOnClickListener(p -> {
-                int position = getAdapterPosition();
-
-                if (position != RecyclerView.NO_POSITION) {
-                    TriviaScores observeScore = ByScoreList.get(position);
-
-                    DetailsFragment frag = new DetailsFragment(observeScore);
-                    FragmentManager fMgr = ((AppCompatActivity) context).getSupportFragmentManager();
-
-                    fMgr.beginTransaction().replace(R.id.fragmentLocation, frag).addToBackStack(null).commit();
-
-
-                }
-            });
 
 
         }

@@ -1,56 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ScoresActivity"
-    >
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
-        app:titleTextColor="@color/white"
-        android:background="@color/black"
-        app:theme="@style/ToolBarStyle"
-
-        />
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/black"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView"
+        android:layout_marginTop="15dp"
+        android:id="@+id/userNameRecyclerScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/previousScores"
-        android:layout_below="@id/toolbar2"
+        android:text="name goes here"
+        android:background="@color/cardview_dark_background"
+        android:textColor="@color/white"
 
         />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/myRecyclerView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView"
-        />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/scoreRecycler"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_toRightOf="@id/myRecyclerView"
-        android:layout_marginLeft="5dp"
 
+    <TextView
+        android:id="@+id/scoreRecyclerScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="score goes here"
+        android:background="@color/cardview_dark_background"
+        android:textColor="@color/white"
         />
 
 
 
 
 
-    <FrameLayout
-        android:id="@+id/fragmentLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+</LinearLayout>
 
-    </FrameLayout>
-</RelativeLayout>
+<!--<Button-->
+<!--android:id="@+id/getTimeButton"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:backgroundTint="@color/black"-->
+<!--android:text="Time Quiz was Taken" />-->

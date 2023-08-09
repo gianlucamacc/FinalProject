@@ -32,11 +32,6 @@ public class Trivia_RecyclerViewAdapter extends RecyclerView.Adapter<Trivia_Recy
     static TriviaDAO tDAO;
 
 
-
-
-
-
-
     public Trivia_RecyclerViewAdapter(Context context, List<TriviaScores> scoreList, TriviaDatabase db){
         this.context = context;
         this.scoreList = scoreList;

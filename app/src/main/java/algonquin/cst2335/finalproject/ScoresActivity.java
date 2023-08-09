@@ -34,10 +34,14 @@ TriviaDAO tDAO;
         toolbar2.showOverflowMenu();
 
         RecyclerView recyclerView = findViewById(R.id.myRecyclerView);
+        RecyclerView ScoreRecyclerView = findViewById(R.id.scoreRecyclerView);
 
         TriviaDatabase db = Room.databaseBuilder(getApplicationContext(), TriviaDatabase.class, "TriviaScores-name").build();
         tDAO = db.tDAO();
 
+        /**
+         * FIRST RECYCLERVIEW, TRIVIA
+         */
         // Perform database operations in a background thread
         Executor executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
@@ -45,20 +49,24 @@ TriviaDAO tDAO;
 
             // Update the UI on the main thread after database operation is complete
             runOnUiThread(() -> {
-                Score_RecyclerViewAdapter ScoreAdapter = new Score_RecyclerViewAdapter(this, scoreList, db);
-                recyclerView.setAdapter(ScoreAdapter);
+                Trivia_RecyclerViewAdapter adapter = new Trivia_RecyclerViewAdapter(this, scoreList, db);
+                recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
             });
         });
+
+/**
+ * SECOND RECYCLERVIEW, BY SCORE
+ */
         Executor thread = Executors.newSingleThreadExecutor();
         thread.execute(() -> {
             List<TriviaScores> ByScoreList = tDAO.getAllByScoreCounts();
 
             // Update the UI on the main thread after database operation is complete
             runOnUiThread(() -> {
-                Trivia_RecyclerViewAdapter adapter = new Trivia_RecyclerViewAdapter(this, ByScoreList, db);
-                recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                Score_RecyclerViewAdapter scoreAdapter = new Score_RecyclerViewAdapter(this, ByScoreList, db);
+                ScoreRecyclerView.setAdapter(scoreAdapter); // Use ScoreRecyclerView here
+                ScoreRecyclerView.setLayoutManager(new LinearLayoutManager(this)); // Use ScoreRecyclerView here
             });
         });
 
