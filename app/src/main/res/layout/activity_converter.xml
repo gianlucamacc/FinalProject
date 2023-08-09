@@ -25,9 +25,10 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/black"
         android:text="@string/convert"
-
         android:textSize="34sp"
-        app:cornerRadius="0dp"
+        app:cornerRadius="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
