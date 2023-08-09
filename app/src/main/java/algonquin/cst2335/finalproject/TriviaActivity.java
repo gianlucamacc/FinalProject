@@ -192,15 +192,6 @@ public class TriviaActivity extends AppCompatActivity {
                                 binding.answerView3.setText(firstModel.getAnswerList().get(2));
                                 binding.answerView4.setText(firstModel.getAnswerList().get(3));
 
-
-
-
-
-
-
-
-
-
                             }
 
 

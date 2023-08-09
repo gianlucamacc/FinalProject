@@ -7,14 +7,16 @@ import androidx.room.PrimaryKey;
 @Entity
 public class TriviaScores {
 
-    @ColumnInfo(name = "User Name")
+    @ColumnInfo(name = "UserName")
     public String userName;
 
     @ColumnInfo(name = "Score")
     public String scoreString;
 
-    @ColumnInfo(name = "Time Taken")
+    @ColumnInfo(name = "TimeTaken")
     public String timeTaken;
+    @ColumnInfo(name = "scoreCount")
+    public int scoreCount;
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")

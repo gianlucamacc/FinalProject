@@ -50,6 +50,17 @@ TriviaDAO tDAO;
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
             });
         });
+        Executor thread = Executors.newSingleThreadExecutor();
+        thread.execute(() -> {
+            List<TriviaScores> ByScoreList = tDAO.getAllByScoreCounts();
+
+            // Update the UI on the main thread after database operation is complete
+            runOnUiThread(() -> {
+                Trivia_RecyclerViewAdapter adapter = new Trivia_RecyclerViewAdapter(this, ByScoreList, db);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            });
+        });
 
 
 
