@@ -12,8 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="name goes here"
-        android:background="@color/cardview_dark_background"
-        android:textColor="@color/white"
+
 
         />
 
@@ -24,8 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="score goes here"
-        android:background="@color/cardview_dark_background"
-        android:textColor="@color/white"
+
         />
 
 

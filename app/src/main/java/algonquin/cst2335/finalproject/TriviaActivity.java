@@ -138,6 +138,12 @@ public class TriviaActivity extends AppCompatActivity {
             else if (categoryOfQuestions.equalsIgnoreCase("sports")){
                 categoryNumber = "21";
             }
+            else if (categoryOfQuestions.equalsIgnoreCase("computers")){
+                categoryNumber = "18";
+            }
+            else if (categoryOfQuestions.equalsIgnoreCase("geography")){
+                categoryNumber = "22";
+            }
             else{
                 categoryNumber = "9";
             }
@@ -324,7 +330,7 @@ public class TriviaActivity extends AppCompatActivity {
         {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle("Quiz Options: ");
-            alertDialogBuilder.setMessage("General, Video Games, Celebrities, Sports");
+            alertDialogBuilder.setMessage("General, Video Games, Celebrities, Sports, Computers, Geography");
             alertDialogBuilder.setPositiveButton("Got it!", (dialog, which) -> {});
             alertDialogBuilder.show();
 
