@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -52,6 +54,7 @@ public class Score_RecyclerViewAdapter extends RecyclerView.Adapter<Score_Recycl
 
         holder.userNameRecycler.setText(ByScoreList.get(position).userName);
         holder.scoreRecycler.setText(ByScoreList.get(position).scoreString);
+        holder.scoreCategory.setText(ByScoreList.get(position).category);
 
 //        holder.answerView3.setText(questionModels.get(position).getAnswerList().get(3));
 //        holder.answerView4.setText(questionModels.get(position).getAnswerList().get(2));
@@ -69,6 +72,7 @@ public class Score_RecyclerViewAdapter extends RecyclerView.Adapter<Score_Recycl
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView userNameRecycler;
         TextView scoreRecycler;
+        TextView scoreCategory;
 
 
 
@@ -77,6 +81,7 @@ public class Score_RecyclerViewAdapter extends RecyclerView.Adapter<Score_Recycl
             super(itemView);
             userNameRecycler = itemView.findViewById(R.id.userNameRecyclerScore);
             scoreRecycler = itemView.findViewById(R.id.scoreRecyclerScore);
+            scoreCategory = itemView.findViewById(R.id.scoreCategory);
 
 
 

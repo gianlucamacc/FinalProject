@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="5dp"
     android:backgroundTint="@color/black"
-    android:orientation="vertical"
-    android:layout_marginBottom="5dp">
+    android:orientation="vertical">
 
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
         android:backgroundTint="@color/black"
-        app:cardCornerRadius="40dp"
-        android:layout_marginBottom="5dp"
-        >
+        app:cardCornerRadius="10dp"
+        android:layout_marginLeft="5dp"
+       >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,10 +27,9 @@
                 android:id="@+id/userNameRecycler"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:text="name goes here"
                 android:textColor="@color/white"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="5dp"
 
 
                 />
@@ -38,18 +38,18 @@
                 android:id="@+id/scoreRecycler"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:text="score goes here"
                 android:textColor="@color/white"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="3dp"
                 />
+
             <TextView
                 android:id="@+id/categoryView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="score here"
                 android:textColor="@color/white"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="3dp"
                 />
 
             <Button
@@ -57,9 +57,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/grey"
-                android:textColor="@color/white"
                 android:text="Time Quiz was Taken"
-                android:layout_marginLeft="5dp"
+                android:textColor="@color/white"
+                android:layout_marginLeft="3dp"
+
                 />
         </LinearLayout>
 

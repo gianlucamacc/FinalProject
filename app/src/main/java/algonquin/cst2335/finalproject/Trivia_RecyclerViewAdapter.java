@@ -54,7 +54,7 @@ public class Trivia_RecyclerViewAdapter extends RecyclerView.Adapter<Trivia_Recy
 
         holder.userNameRecycler.setText(scoreList.get(position).userName);
         holder.scoreRecycler.setText(scoreList.get(position).scoreString);
-        holder.scoreRecycler.setText(scoreList.get(position).);
+        holder.category.setText(scoreList.get(position).category);
 
 //        holder.answerView3.setText(questionModels.get(position).getAnswerList().get(3));
 //        holder.answerView4.setText(questionModels.get(position).getAnswerList().get(2));

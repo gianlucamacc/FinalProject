@@ -18,6 +18,9 @@ public class TriviaScores {
     @ColumnInfo(name = "scoreCount")
     public int scoreCount;
 
+    @ColumnInfo(name = "category")
+    public String category;
+
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
