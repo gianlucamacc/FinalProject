@@ -282,6 +282,7 @@ public class TriviaActivity extends AppCompatActivity {
             scores.userName = userName;
             scores.scoreString = scoreString;
             scores.timeTaken = getCurrentTime();
+            scores.scoreCount = scoreCount;
 
             Executor thread = Executors.newSingleThreadExecutor();
             thread.execute(()->{

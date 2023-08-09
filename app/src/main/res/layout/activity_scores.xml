@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
         android:layout_toRightOf="@id/myRecyclerView"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="30dp"
 
         />
 

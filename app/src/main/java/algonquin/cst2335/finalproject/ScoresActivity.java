@@ -45,8 +45,8 @@ TriviaDAO tDAO;
 
             // Update the UI on the main thread after database operation is complete
             runOnUiThread(() -> {
-                Trivia_RecyclerViewAdapter adapter = new Trivia_RecyclerViewAdapter(this, scoreList, db);
-                recyclerView.setAdapter(adapter);
+                Score_RecyclerViewAdapter ScoreAdapter = new Score_RecyclerViewAdapter(this, scoreList, db);
+                recyclerView.setAdapter(ScoreAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
             });
         });
