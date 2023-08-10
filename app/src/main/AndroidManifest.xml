@@ -15,6 +15,9 @@
         android:theme="@style/Theme.FinalProject"
         tools:targetApi="31">
         <activity
+            android:name=".ScoresActivity"
+            android:exported="false" />
+        <activity
             android:name=".ConversionRecycler"
             android:exported="false" />
         <activity

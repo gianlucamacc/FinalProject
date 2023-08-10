@@ -15,4 +15,14 @@
                     "3. The conversion will be saved to the database.\n"
                     "4. You can view saved conversions in the Recycler view.\n"
                     "5. Use the options menu to access different features."</string>
+    <string name="previousScores">"Previous Scores: "</string>
+    <string name="TriviaQuestionGenerator">Trivia Question Generator</string>
+    <string name="SelectNumber">Select Number of Questions</string>
+    <string name="SelectCategory">Select Category</string>
+    <string name="getQUiz" >Get Quiz</string>
+    <string name="NextQuestion">Next Question</string>
+    <string name="EnterName">Enter your name!</string>
+    <string name="nameHere">Name Goes Here</string>
+    <string name="yourScoreIs">Your String Is</string>
+    <string name="SaveScore">Save your Score</string>
 </resources>
