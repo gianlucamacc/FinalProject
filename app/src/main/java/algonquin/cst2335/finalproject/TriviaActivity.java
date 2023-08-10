@@ -47,7 +47,9 @@ import java.net.URLDecoder;
 
 
 
-
+/**
+ * An activity for playing a trivia quiz game and saving scores.
+ */
 public class TriviaActivity extends AppCompatActivity {
 
     protected RequestQueue queue = null;
@@ -267,10 +269,10 @@ public class TriviaActivity extends AppCompatActivity {
                     // Display final score and user input fields
                     binding.userNamePrompt.setVisibility(View.VISIBLE);
                     binding.userName.setVisibility(View.VISIBLE);
-                    binding.score.setVisibility(View.VISIBLE);
+
                     binding.saveScoreButton.setVisibility(View.VISIBLE);
 
-                    binding.score.setText("Your Score is: " + correctAnswerCount + "/" + questionModels.size() + "(" + scoreCount + ")");
+
 
                     scoreString = "Your Score is: " + correctAnswerCount + "/" + questionModels.size() + "(" + scoreCount + ")" ;
                     Toast.makeText(this, "You Scored: " + correctAnswerCount + " / " + questionModels.size() + "  " + "(" + scoreCount + ")", Toast.LENGTH_LONG).show();
@@ -340,7 +342,11 @@ public class TriviaActivity extends AppCompatActivity {
 
         return true;
     }
-
+    /**
+     * Get the current time in a formatted string.
+     *
+     * @return The current time as a formatted string.
+     */
     private String getCurrentTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd-MMM-yyyy \nhh:mm:ss a");
         return sdf.format(new Date());
@@ -350,7 +356,7 @@ public class TriviaActivity extends AppCompatActivity {
 
 
 
-        
+
 
 
     }
