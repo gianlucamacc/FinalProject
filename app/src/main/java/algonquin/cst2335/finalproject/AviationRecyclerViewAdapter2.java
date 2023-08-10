@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class AviationRecyclerViewAdapter extends RecyclerView.Adapter<AviationRecyclerViewAdapter.MyViewHolder> {
+public class AviationRecyclerViewAdapter2 extends RecyclerView.Adapter<AviationRecyclerViewAdapter2.MyViewHolder> {
 
     static Context context;
     AviationDatabase db;
@@ -22,33 +22,33 @@ public class AviationRecyclerViewAdapter extends RecyclerView.Adapter<AviationRe
     ArrayList<FlightModel> flightModels = new ArrayList<>();
 
 
-    public AviationRecyclerViewAdapter(Context context, ArrayList<FlightModel> flightModelList, AviationDatabase db){
+    public AviationRecyclerViewAdapter2(Context context, ArrayList<FlightModel> flightModelList, AviationDatabase db){
         this.context = context;
         this.flightModels = flightModelList;
         this.db = db;
         this.aDAO = db.aDAO();
 
     }
-    public AviationRecyclerViewAdapter(Context context, ArrayList<FlightModel> flightModelList){
+    public AviationRecyclerViewAdapter2(Context context, ArrayList<FlightModel> flightModelList){
         this.context = context;
         this.flightModels = flightModelList;
 
     }
 
-    public AviationRecyclerViewAdapter(SavedFlights context, ArrayList<FlightModel> savedFlights, SavedFlights savedFlights1) {
+    public AviationRecyclerViewAdapter2(SavedFlights context, ArrayList<FlightModel> savedFlights, SavedFlights savedFlights1) {
     }
 
 
     @NonNull
     @Override
-    public AviationRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AviationRecyclerViewAdapter2.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.recycler_aviation_row, parent, false);
-        return new AviationRecyclerViewAdapter.MyViewHolder(view);
+        View view = inflater.inflate(R.layout.recycler_aviation_row_2, parent, false);
+        return new AviationRecyclerViewAdapter2.MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AviationRecyclerViewAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AviationRecyclerViewAdapter2.MyViewHolder holder, int position) {
         holder.airportName.setText(flightModels.get(position).getAirportName());
         holder.terminal.setText(flightModels.get(position).getTerminal());
         holder.gate.setText(flightModels.get(position).getGate());

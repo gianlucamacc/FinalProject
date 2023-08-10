@@ -17,6 +17,8 @@
         <activity
             android:name=".AviationActivity"
             android:exported="false" />
+        <activity android:name=".SavedFlights"
+            android:exported="false"/>
         <activity
             android:name=".ConverterActivity"
             android:exported="false" />
