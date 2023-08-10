@@ -169,7 +169,6 @@ public class ConverterActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.item1) {
             saveCurrencyConversionToDatabase();
-            Toast.makeText(this, "Currency conversion is saved to the database", Toast.LENGTH_LONG).show();
         } else if (item.getItemId() == R.id.item2) {
             Intent conversionRecycler = new Intent(this, ConversionRecycler.class);
             startActivity(conversionRecycler);
@@ -196,6 +195,11 @@ public class ConverterActivity extends AppCompatActivity {
         String outputAmount = binding.outputAmount.getText().toString();
         String inputCurrency = binding.inputCurrency.getText().toString().toUpperCase();
         String outputCurrency = binding.outputCurrency.getText().toString().toUpperCase();
+        if("Amount".equals(outputAmount)){
+            Toast.makeText(this, "Cannot save unconverted currencies", Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+
 
         CurrencyConverter conversion = new CurrencyConverter();
         conversion.inputAmount = inputAmount;
@@ -204,10 +208,13 @@ public class ConverterActivity extends AppCompatActivity {
         conversion.outputCurrency = outputCurrency;
         conversion.timeExecuted = getCurrentTime();
 
-        Executor thread = Executors.newSingleThreadExecutor();
-        thread.execute(() -> {
-            cDAO.insertConversion(conversion);
-        });
+            Executor thread = Executors.newSingleThreadExecutor();
+            thread.execute(() -> {
+                cDAO.insertConversion(conversion);
+                runOnUiThread(() -> {
+                    Toast.makeText(this, "Currency conversion is saved to the database", Toast.LENGTH_LONG).show();
+                });
+            }); }
     }
     /**
      * Saves conversion data to SharedPreferences for future use.
