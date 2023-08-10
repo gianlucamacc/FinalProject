@@ -9,13 +9,31 @@ import androidx.fragment.app.Fragment;
 
 import algonquin.cst2335.finalproject.databinding.DetailsLayoutBinding;
 
+/**
+ * A Fragment subclass that displays detailed information about a selected TriviaScores object.
+ */
 public class DetailsFragment extends Fragment {
 
-    TriviaScores selected;
+    private TriviaScores selected;
+
+    /**
+     * Constructs a new DetailsFragment instance with the provided TriviaScores object.
+     *
+     * @param t The TriviaScores object for which detailed information will be displayed.
+     */
     public DetailsFragment(TriviaScores t){
         selected = t;
     }
 
+    /**
+     * Inflates the layout for the DetailsFragment and displays detailed information about the
+     * selected TriviaScores object.
+     *
+     * @param inflater           The LayoutInflater object that can be used to inflate any views in the fragment.
+     * @param container          The parent view that the fragment's UI should be attached to.
+     * @param savedInstanceState A Bundle containing the saved state of the fragment.
+     * @return                   The root View of the inflated layout.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         DetailsLayoutBinding binding = DetailsLayoutBinding.inflate(inflater);

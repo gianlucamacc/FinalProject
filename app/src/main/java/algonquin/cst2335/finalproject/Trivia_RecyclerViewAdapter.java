@@ -23,6 +23,9 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+/**
+ * A RecyclerView adapter for displaying trivia scores and related information.
+ */
 public class Trivia_RecyclerViewAdapter extends RecyclerView.Adapter<Trivia_RecyclerViewAdapter.MyViewHolder> {
     static Context context;
     ArrayList<TriviaQuestionModel> questionModels;
@@ -31,12 +34,13 @@ public class Trivia_RecyclerViewAdapter extends RecyclerView.Adapter<Trivia_Recy
     TriviaDatabase db;
     static TriviaDAO tDAO;
 
-
-
-
-
-
-
+    /**
+     * Constructs a Trivia_RecyclerViewAdapter instance.
+     *
+     * @param context    The context in which the adapter is created.
+     * @param scoreList  A list of TriviaScores objects representing the trivia scores.
+     * @param db         The TriviaDatabase instance used for database operations.
+     */
     public Trivia_RecyclerViewAdapter(Context context, List<TriviaScores> scoreList, TriviaDatabase db){
         this.context = context;
         this.scoreList = scoreList;
@@ -59,6 +63,7 @@ public class Trivia_RecyclerViewAdapter extends RecyclerView.Adapter<Trivia_Recy
 
         holder.userNameRecycler.setText(scoreList.get(position).userName);
         holder.scoreRecycler.setText(scoreList.get(position).scoreString);
+        holder.category.setText(scoreList.get(position).category);
 
 //        holder.answerView3.setText(questionModels.get(position).getAnswerList().get(3));
 //        holder.answerView4.setText(questionModels.get(position).getAnswerList().get(2));
@@ -72,46 +77,61 @@ public class Trivia_RecyclerViewAdapter extends RecyclerView.Adapter<Trivia_Recy
     public int getItemCount() {
         return scoreList.size();
     }
-
+    /**
+     * ViewHolder class for holding views associated with each trivia score item in the RecyclerView.
+     */
     public class MyViewHolder extends RecyclerView.ViewHolder{
-     TextView userNameRecycler;
-     TextView scoreRecycler;
+        TextView userNameRecycler;
+        TextView scoreRecycler;
 
-     TextView timeRecycler;
+        TextView timeRecycler;
+        TextView category;
         Button getTimeButton = itemView.findViewById(R.id.getTimeButton);
+
+
+        /**
+         * Constructs a MyViewHolder instance.
+         *
+         * @param itemView The view representing a trivia score item.
+         */
         public MyViewHolder(@NonNull View itemView){
-                    super(itemView);
-             userNameRecycler = itemView.findViewById(R.id.userNameRecycler);
-             scoreRecycler = itemView.findViewById(R.id.scoreRecycler);
+            super(itemView);
+            userNameRecycler = itemView.findViewById(R.id.userNameRecycler);
+            scoreRecycler = itemView.findViewById(R.id.scoreRecycler);
+            category = itemView.findViewById(R.id.categoryView);
 
 
 //             itemView.setOnClickListener(l->{
 //                 deleteConversion();
 //             });
-                itemView.setOnClickListener(d -> {
-                    deleteConversion();
+            itemView.setOnClickListener(d -> {
+                deleteConversion();
             });
 
-                getTimeButton.setOnClickListener(p->{
-                    int position = getAdapterPosition();
+            getTimeButton.setOnClickListener(p->{
+                int position = getAdapterPosition();
 
-                    if (position != RecyclerView.NO_POSITION) {
-                        TriviaScores observeScore = scoreList.get(position);
+                if (position != RecyclerView.NO_POSITION) {
+                    TriviaScores observeScore = scoreList.get(position);
 
-                        DetailsFragment frag = new DetailsFragment(observeScore);
-                        FragmentManager fMgr = ((AppCompatActivity) context).getSupportFragmentManager();
+                    DetailsFragment frag = new DetailsFragment(observeScore);
+                    FragmentManager fMgr = ((AppCompatActivity) context).getSupportFragmentManager();
 
-                        fMgr.beginTransaction().replace(R.id.fragmentLocation, frag).addToBackStack(null).commit();
+                    fMgr.beginTransaction().replace(R.id.fragmentLocation, frag).addToBackStack(null).commit();
 
 
-                    }
-                });
+                }
+            });
 
 
 
 
 
         }
+
+        /**
+         * Deletes a trivia score entry from the RecyclerView and database.
+         */
         public void deleteConversion() {
             int position = getAdapterPosition();
 
@@ -154,4 +174,4 @@ public class Trivia_RecyclerViewAdapter extends RecyclerView.Adapter<Trivia_Recy
 
 
     }
-    }
+}
