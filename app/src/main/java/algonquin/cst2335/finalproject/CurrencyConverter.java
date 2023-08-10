@@ -42,4 +42,51 @@ public class CurrencyConverter {
     public String timeExecuted;
 
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getInputCurrency() {
+        return inputCurrency;
+    }
+
+    public void setInputCurrency(String inputCurrency) {
+        this.inputCurrency = inputCurrency;
+    }
+
+    public String getInputAmount() {
+        return inputAmount;
+    }
+
+    public void setInputAmount(String inputAmount) {
+        this.inputAmount = inputAmount;
+    }
+
+    public String getOutputCurrency() {
+        return outputCurrency;
+    }
+
+    public void setOutputCurrency(String outputCurrency) {
+        this.outputCurrency = outputCurrency;
+    }
+
+    public String getOutputAmount() {
+        return outputAmount;
+    }
+
+    public void setOutputAmount(String outputAmount) {
+        this.outputAmount = outputAmount;
+    }
+
+    public String getTimeExecuted() {
+        return timeExecuted;
+    }
+
+    public void setTimeExecuted(String timeExecuted) {
+        this.timeExecuted = timeExecuted;
+    }
 }

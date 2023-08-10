@@ -26,6 +26,7 @@ import org.json.JSONObject;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -155,7 +156,7 @@ public class ConverterActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.my_menu, menu);
+        getMenuInflater().inflate(R.menu.my_menu_converter, menu);
         return true;
     }
     /**
@@ -172,6 +173,7 @@ public class ConverterActivity extends AppCompatActivity {
         } else if (item.getItemId() == R.id.item2) {
             Intent conversionRecycler = new Intent(this, ConversionRecycler.class);
             startActivity(conversionRecycler);
+            updateAllConversions();
         } else if (item.getItemId() == R.id.item3) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle(getString(R.string.instructions));
@@ -221,5 +223,55 @@ public class ConverterActivity extends AppCompatActivity {
         editor.putString("inputAmount", inputAmount);
         editor.apply();
     }
+    /**
+     * Updates all currency conversions from the database using a separate thread.
+     */
+    private void updateAllConversions() {
+        Thread thread = new Thread(() -> {
+            List<CurrencyConverter> conversionList = cDAO.getAllConversions();
+            String apiKey = "c1f37b28035f89328e61c24caefd20d99f97cdf0";
+            String baseUrl = "https://api.getgeoapi.com/v2/currency/convert";
+
+            for (CurrencyConverter conversion : conversionList) {
+                String fromCurrency = URLEncoder.encode(conversion.getInputCurrency());
+                String toCurrency = URLEncoder.encode(conversion.getOutputCurrency());
+                String amount = URLEncoder.encode(conversion.getInputAmount());
+
+                String URL = baseUrl + "?format=json&from=" + fromCurrency + "&to=" + toCurrency +
+                        "&amount=" + amount + "&api_key=" + apiKey;
+
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, URL, null,
+                        response -> {
+                            try {
+                                JSONObject rates = response.getJSONObject("rates");
+                                JSONObject currency = rates.getJSONObject(conversion.getOutputCurrency());
+                                String ratesAmount = currency.getString("rate_for_amount");
+
+                                // Update UI on the main thread
+                                runOnUiThread(() -> {
+                                    binding.outputAmount.setText(ratesAmount);
+                                });
+
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
+                            }
+                        },
+                        error -> {
+                            // Handle error if needed
+                        });
+
+                queue.add(request);
+            }
+
+            // Inform the user that the database has been updated
+            runOnUiThread(() -> {
+                Toast.makeText(this, "Database has been updated", Toast.LENGTH_LONG).show();
+            });
+        });
+
+        thread.start();
+    }
+
+
 
 }
