@@ -1,43 +1,51 @@
 package algonquin.cst2335.finalproject;
 
+import static algonquin.cst2335.finalproject.AviationRecyclerViewAdapter.aDAO;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.room.Room;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import algonquin.cst2335.finalproject.databinding.DetailsLayoutBinding;
 
-/**
- * A Fragment subclass that displays detailed information about a selected TriviaScores object.
- */
 public class DetailsFragment extends Fragment {
 
-    private TriviaScores selected;
+    FlightModel selected;
 
-    /**
-     * Constructs a new DetailsFragment instance with the provided TriviaScores object.
-     *
-     * @param t The TriviaScores object for which detailed information will be displayed.
-     */
-    public DetailsFragment(TriviaScores t){
+    public DetailsFragment(FlightModel t) {
         selected = t;
     }
 
-    /**
-     * Inflates the layout for the DetailsFragment and displays detailed information about the
-     * selected TriviaScores object.
-     *
-     * @param inflater           The LayoutInflater object that can be used to inflate any views in the fragment.
-     * @param container          The parent view that the fragment's UI should be attached to.
-     * @param savedInstanceState A Bundle containing the saved state of the fragment.
-     * @return                   The root View of the inflated layout.
-     */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         DetailsLayoutBinding binding = DetailsLayoutBinding.inflate(inflater);
-        binding.timeTaken.setText(selected.timeTaken);
+        AviationDatabase db = Room.databaseBuilder(getActivity(), AviationDatabase.class, "SavedFlights").build();
+        aDAO = db.aDAO();
+
+        binding.detailsFragment1.setText(selected.airportName);
+        binding.detailsFragment2.setText(selected.terminal);
+        binding.detailsFragment3.setText(selected.gate);
+        binding.detailsFragment4.setText(selected.delay);
+
+        binding.saveButton.setOnClickListener(click -> {
+            Executor thread = Executors.newSingleThreadExecutor();
+
+            thread.execute(() ->{
+                aDAO.insertFlight(selected);//add to database;
+                /*this runs in another thread*/
+            });
+            Toast toast = Toast.makeText(getActivity(), "Flight saved!", Toast.LENGTH_LONG);
+            toast.show();
+
+        });
 
         return binding.getRoot();
     }

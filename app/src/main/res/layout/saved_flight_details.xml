@@ -112,12 +112,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/gateNumber" />
 
             <Button
-                android:id="@+id/saveButton"
+                android:id="@+id/deleteButton"
                 android:layout_width="95dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="156dp"
                 android:backgroundTint="@color/black"
-                android:text="Save"
+                android:text="Delete"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.105"
                 app:layout_constraintStart_toStartOf="parent"

@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -24,6 +21,8 @@
         <activity
             android:name=".AviationActivity"
             android:exported="false" />
+        <activity android:name=".SavedFlights"
+            android:exported="false"/>
         <activity
             android:name=".ConverterActivity"
             android:exported="false" />
@@ -32,9 +31,6 @@
             android:exported="false" />
         <activity
             android:name=".BearActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SavedImages"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

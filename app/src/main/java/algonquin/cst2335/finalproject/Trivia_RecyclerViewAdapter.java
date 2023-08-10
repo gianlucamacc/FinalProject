@@ -11,10 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -114,7 +112,7 @@ public class Trivia_RecyclerViewAdapter extends RecyclerView.Adapter<Trivia_Recy
                 if (position != RecyclerView.NO_POSITION) {
                     TriviaScores observeScore = scoreList.get(position);
 
-                    DetailsFragment frag = new DetailsFragment(observeScore);
+                    DetailsFragmentT frag = new DetailsFragmentT(observeScore);
                     FragmentManager fMgr = ((AppCompatActivity) context).getSupportFragmentManager();
 
                     fMgr.beginTransaction().replace(R.id.fragmentLocation, frag).addToBackStack(null).commit();
