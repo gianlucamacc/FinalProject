@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -31,6 +32,9 @@
             android:exported="false" />
         <activity
             android:name=".BearActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SavedImages"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

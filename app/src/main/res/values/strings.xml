@@ -25,4 +25,9 @@
     <string name="nameHere">Name Goes Here</string>
     <string name="yourScoreIs">Your String Is</string>
     <string name="SaveScore">Save your Score</string>
+    <string name="bearbar">Bear Image Generator</string>
+    <string name="width">Width</string>
+    <string name="height">Height</string>
+    <string name="generateButton">Generate Image</string>
+
 </resources>
