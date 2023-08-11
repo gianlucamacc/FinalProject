@@ -110,7 +110,7 @@ public class ConversionsRecyclerViewAdapter extends RecyclerView.Adapter<Convers
             });
 
             timeExecButton.setOnClickListener(clk -> {
-                int position = getAbsoluteAdapterPosition();
+                int position = getAdapterPosition();
 
                 if (position != RecyclerView.NO_POSITION) {
 
@@ -132,7 +132,7 @@ public class ConversionsRecyclerViewAdapter extends RecyclerView.Adapter<Convers
          * Deletes a conversion record from the database and updates the RecyclerView.
          */
         public void deleteConversion() {
-            int position = getAbsoluteAdapterPosition();
+            int position = getAdapterPosition();
 
             if (position != RecyclerView.NO_POSITION) {
                 CurrencyConverter removedConversion = converterList.get(position);
