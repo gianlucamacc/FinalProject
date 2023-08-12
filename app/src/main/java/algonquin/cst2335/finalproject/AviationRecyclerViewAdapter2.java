@@ -20,22 +20,14 @@ public class AviationRecyclerViewAdapter2 extends RecyclerView.Adapter<AviationR
     AviationDatabase db;
     static AviationDAO aDAO;
     ArrayList<FlightModel> flightModels = new ArrayList<>();
+    private final FlightRecyclerViewInterface recyclerViewInterface;
 
 
-    public AviationRecyclerViewAdapter2(Context context, ArrayList<FlightModel> flightModelList, AviationDatabase db){
+    public AviationRecyclerViewAdapter2(Context context, ArrayList<FlightModel> flightModelList, FlightRecyclerViewInterface recyclerViewInterface){
         this.context = context;
         this.flightModels = flightModelList;
-        this.db = db;
-        this.aDAO = db.aDAO();
+        this.recyclerViewInterface = recyclerViewInterface;
 
-    }
-    public AviationRecyclerViewAdapter2(Context context, ArrayList<FlightModel> flightModelList){
-        this.context = context;
-        this.flightModels = flightModelList;
-
-    }
-
-    public AviationRecyclerViewAdapter2(SavedFlights context, ArrayList<FlightModel> savedFlights, SavedFlights savedFlights1) {
     }
 
 
@@ -67,7 +59,7 @@ public class AviationRecyclerViewAdapter2 extends RecyclerView.Adapter<AviationR
         TextView terminal;
         TextView gate;
         TextView delay;
-        Button saveDetailsButton = itemView.findViewById(R.id.saveDetailsButton);
+        Button button = itemView.findViewById(R.id.deleteButton);
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -78,7 +70,7 @@ public class AviationRecyclerViewAdapter2 extends RecyclerView.Adapter<AviationR
             delay = itemView.findViewById(R.id.delay);
 
 
-            saveDetailsButton.setOnClickListener(p->{
+            button.setOnClickListener(p->{
                 int position = getAdapterPosition();
 
                 if (position != RecyclerView.NO_POSITION) {

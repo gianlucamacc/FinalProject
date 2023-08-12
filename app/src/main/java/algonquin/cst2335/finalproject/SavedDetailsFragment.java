@@ -1,6 +1,6 @@
 package algonquin.cst2335.finalproject;
 
-import static algonquin.cst2335.finalproject.AviationRecyclerViewAdapter.aDAO;
+import static algonquin.cst2335.finalproject.AviationRecyclerViewAdapter2.aDAO;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,19 +16,19 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import algonquin.cst2335.finalproject.databinding.SavedFlightDetailsBinding;
+import algonquin.cst2335.finalproject.databinding.SavedDetailsBinding;
 
-public class SavedFlightDetails extends Fragment {
+public class SavedDetailsFragment extends Fragment {
 
     FlightModel selected;
 
-    public SavedFlightDetails(FlightModel t) {
+    public SavedDetailsFragment(FlightModel t) {
         selected = t;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        SavedFlightDetailsBinding binding = SavedFlightDetailsBinding.inflate(inflater);
+        SavedDetailsBinding binding = SavedDetailsBinding.inflate(inflater);
         AviationDatabase db = Room.databaseBuilder(getActivity(), AviationDatabase.class, "SavedFlights").build();
         aDAO = db.aDAO();
 

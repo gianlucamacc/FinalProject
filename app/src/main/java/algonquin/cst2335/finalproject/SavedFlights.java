@@ -7,7 +7,6 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -16,8 +15,6 @@ import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import algonquin.cst2335.finalproject.databinding.ActivityAviationBinding;
-import algonquin.cst2335.finalproject.databinding.SavedFlightDetailsBinding;
 import algonquin.cst2335.finalproject.databinding.SavedFlightsBinding;
 
 public class SavedFlights extends AppCompatActivity implements FlightRecyclerViewInterface {
@@ -31,7 +28,7 @@ public class SavedFlights extends AppCompatActivity implements FlightRecyclerVie
     @Override
     public void onItemClick(int position) {
 
-        SavedFlightDetails frag = new SavedFlightDetails(savedFlights.get(position));
+        SavedDetailsFragment frag = new SavedDetailsFragment(savedFlights.get(position));
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentLocation2, frag)
